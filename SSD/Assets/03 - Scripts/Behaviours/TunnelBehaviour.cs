@@ -13,7 +13,8 @@ public class TunnelBehaviour : MonoBehaviour {
 
     void Start () {
         GameManager gameManager = GameManager.Instance;
-        MovementSpeed = gameManager.LevelSpeed;
+        MovementSpeed = gameManager.TunnelSpawnSpeed;
+        
 	}
 	
 	
