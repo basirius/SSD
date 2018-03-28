@@ -7,13 +7,21 @@ public class GameManager : UnitySingletonPersistent<GameManager> {
 
     // This is the main persistent singleton Game Manager
     // to use this in any script in the game gameManager = GameManager.Instance;
+    [HideInInspector]
     public float LevelSpeed;
+    [HideInInspector]
     public float SpawnInterval;
+    [HideInInspector]
+    public GameObject TunnelSegment;
+    public GameObject Settings;
 
     void Start()
     {
         Cursor.visible = true;
-        
+        Level01Settings level01Settings =  Settings.GetComponent<Level01Settings>();
+        this.SpawnInterval = level01Settings.SpawnInterval;
+        this.LevelSpeed = level01Settings.LevelSpeed;
+        this.TunnelSegment = level01Settings.TunnelSegment;
         SceneManager.LoadScene("01 - Scenes/00 - StartMenu");
         
     }

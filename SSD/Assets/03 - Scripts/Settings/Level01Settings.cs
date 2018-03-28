@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Level01Settings : MonoBehaviour
 {
-
-    public float LevelSpeed = 280;
-    public float SpawnInterval = 5;
+    public float LevelSpeed;
+    public float SpawnInterval;
+    public GameObject TunnelSegment;
 
 }

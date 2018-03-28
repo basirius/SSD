@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuLogic : MonoBehaviour {
+public class MainMenuBehaviour : MonoBehaviour {
 	
 	public void StartGame () {
         Cursor.visible = false;

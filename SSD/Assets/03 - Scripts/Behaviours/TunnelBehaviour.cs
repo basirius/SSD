@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class TunnelBehaviour : MonoBehaviour {
 
-    public float MovementSpeed;
+    // Variables
+    private float MovementSpeed;
     private float nextSpawnTime = 0;
     private float spawnPositionX;
     private float spawnPositionY;
     private float randomSpawnerSelector;
     private float spawnInterval;
 
+    // Game Objects
+    private GameObject tunnelSegment;
+
     void Start () {
         GameManager gameManager = GameManager.Instance;
-        MovementSpeed = gameManager.TunnelSpawnSpeed;
+        MovementSpeed = gameManager.LevelSpeed;
+        tunnelSegment = gameManager.TunnelSegment;
+        spawnInterval = gameManager.SpawnInterval;
+        print(tunnelSegment.transform.name);
         
 	}
 	
@@ -21,14 +28,15 @@ public class TunnelBehaviour : MonoBehaviour {
 	void Update () {
         randomSpawnerSelector = Random.Range(1, 100);
         transform.Translate(0, 0, MovementSpeed * Time.deltaTime);
+        SpawnTarget();
     }
 
 
-    void SpawnTarget(int targetIndex)
+    void SpawnTarget()
     {
         if (Time.timeSinceLevelLoad > nextSpawnTime)
         {
-            // Instantiate the targer
+            Instantiate(tunnelSegment, transform.position, Quaternion.identity);
             nextSpawnTime += spawnInterval;
         }
     }
