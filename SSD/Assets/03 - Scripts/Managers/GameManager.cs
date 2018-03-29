@@ -13,6 +13,9 @@ public class GameManager : UnitySingletonPersistent<GameManager> {
     public float SpawnInterval;
     [HideInInspector]
     public GameObject TunnelSegment;
+    [HideInInspector]
+    public float TunnelSegmentLength;
+
     public GameObject Settings;
 
     void Start()
@@ -22,8 +25,8 @@ public class GameManager : UnitySingletonPersistent<GameManager> {
         this.SpawnInterval = level01Settings.SpawnInterval;
         this.LevelSpeed = level01Settings.LevelSpeed;
         this.TunnelSegment = level01Settings.TunnelSegment;
+        this.TunnelSegmentLength = level01Settings.TunnelSegmentLength;
         SceneManager.LoadScene("01 - Scenes/00 - StartMenu");
-        
     }
 
     void Update()

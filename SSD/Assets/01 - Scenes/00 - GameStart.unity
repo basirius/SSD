@@ -140,8 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a6326a104c008845b9f87f8e34b075f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelSpeed: 100
+  LevelSpeed: 320
   SpawnInterval: 5
+  TunnelSegmentLength: 0
   TunnelSegment: {fileID: 1196149206703658, guid: 8d72854a21e1f6249a00bc14c228dcb0,
     type: 2}
 --- !u!4 &514896366
@@ -332,6 +333,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelSpeed: 0
   SpawnInterval: 0
+  TunnelSegment: {fileID: 0}
+  TunnelSegmentLength: 0
   Settings: {fileID: 514896364}
 --- !u!4 &1747093704
 Transform:

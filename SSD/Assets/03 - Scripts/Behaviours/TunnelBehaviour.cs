@@ -11,6 +11,8 @@ public class TunnelBehaviour : MonoBehaviour {
     private float spawnPositionY;
     private float randomSpawnerSelector;
     private float spawnInterval;
+    private float tunnelSegmentLength;
+    private int tunnelSegmentSpawnPerSecond;
 
     // Game Objects
     private GameObject tunnelSegment;
@@ -19,11 +21,11 @@ public class TunnelBehaviour : MonoBehaviour {
         GameManager gameManager = GameManager.Instance;
         MovementSpeed = gameManager.LevelSpeed;
         tunnelSegment = gameManager.TunnelSegment;
+        tunnelSegmentLength = gameManager.TunnelSegmentLength;
         spawnInterval = gameManager.SpawnInterval;
         print(tunnelSegment.transform.name);
-        
+        tunnelSegmentSpawnPerSecond = (int)(MovementSpeed / tunnelSegmentLength);
 	}
-	
 	
 	void Update () {
         randomSpawnerSelector = Random.Range(1, 100);
@@ -31,11 +33,11 @@ public class TunnelBehaviour : MonoBehaviour {
         SpawnTarget();
     }
 
-
     void SpawnTarget()
     {
         if (Time.timeSinceLevelLoad > nextSpawnTime)
         {
+            // Instantiate based on travel speed and the length of the tunnel segment 
             Instantiate(tunnelSegment, transform.position, Quaternion.identity);
             nextSpawnTime += spawnInterval;
         }
