@@ -13,6 +13,7 @@ public class TunnelBehaviour : MonoBehaviour {
     private float spawnInterval;
     private float tunnelSegmentLength;
     private int tunnelSegmentSpawnPerSecond;
+    private int numberOftunnelSegmentSpawnsInEachInterval;
 
     // Game Objects
     private GameObject tunnelSegment;
@@ -23,23 +24,38 @@ public class TunnelBehaviour : MonoBehaviour {
         tunnelSegment = gameManager.TunnelSegment;
         tunnelSegmentLength = gameManager.TunnelSegmentLength;
         spawnInterval = gameManager.SpawnInterval;
-        print(tunnelSegment.transform.name);
         tunnelSegmentSpawnPerSecond = (int)(MovementSpeed / tunnelSegmentLength);
-	}
+        numberOftunnelSegmentSpawnsInEachInterval = (int)(tunnelSegmentSpawnPerSecond * spawnInterval);
+    }
 	
 	void Update () {
         randomSpawnerSelector = Random.Range(1, 100);
         transform.Translate(0, 0, MovementSpeed * Time.deltaTime);
-        SpawnTarget();
+        Spawn();
     }
 
-    void SpawnTarget()
+    void Spawn()
     {
         if (Time.timeSinceLevelLoad > nextSpawnTime)
         {
-            // Instantiate based on travel speed and the length of the tunnel segment 
-            Instantiate(tunnelSegment, transform.position, Quaternion.identity);
+            SpawnTunnelSection();
             nextSpawnTime += spawnInterval;
+        }
+    }
+
+
+    /// <summary>
+    /// Spawn a tunnel section made of tunnel segments
+    /// </summary>
+    void SpawnTunnelSection()
+    {
+        Vector3 tunnelSegmentSpawnPosition = new Vector3();
+        tunnelSegmentSpawnPosition = transform.position;
+
+        for (int i = 0; i < numberOftunnelSegmentSpawnsInEachInterval; i++)
+        {
+            tunnelSegmentSpawnPosition.z = transform.position.z + i * 80;
+            Instantiate(tunnelSegment, tunnelSegmentSpawnPosition, Quaternion.identity);
         }
     }
 
