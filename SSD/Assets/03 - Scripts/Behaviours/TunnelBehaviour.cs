@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class TunnelBehaviour : MonoBehaviour {
 
     // Variables
@@ -26,6 +28,7 @@ public class TunnelBehaviour : MonoBehaviour {
         spawnInterval = gameManager.SpawnInterval;
         tunnelSegmentSpawnPerSecond = (int)(MovementSpeed / tunnelSegmentLength);
         numberOftunnelSegmentSpawnsInEachInterval = (int)(tunnelSegmentSpawnPerSecond * spawnInterval);
+        SpawnTunnelSection(-1520); // this creates an initial portion of the tunnel
     }
 	
 	void Update () {
@@ -38,23 +41,34 @@ public class TunnelBehaviour : MonoBehaviour {
     {
         if (Time.timeSinceLevelLoad > nextSpawnTime)
         {
-            SpawnTunnelSection();
+            SpawnTunnelSection(0);
             nextSpawnTime += spawnInterval;
         }
     }
+
+    void SpawnPassiveObjects()
+    {
+
+    }
+
+    void SpawnActiveObjects()
+    {
+
+    }
+
 
 
     /// <summary>
     /// Spawn a tunnel section made of tunnel segments
     /// </summary>
-    void SpawnTunnelSection()
+    void SpawnTunnelSection(float startingPoint)
     {
         Vector3 tunnelSegmentSpawnPosition = new Vector3();
         tunnelSegmentSpawnPosition = transform.position;
 
         for (int i = 0; i < numberOftunnelSegmentSpawnsInEachInterval; i++)
         {
-            tunnelSegmentSpawnPosition.z = transform.position.z + i * 80;
+            tunnelSegmentSpawnPosition.z = transform.position.z + i * 80 + startingPoint;
             Instantiate(tunnelSegment, tunnelSegmentSpawnPosition, Quaternion.identity);
         }
     }

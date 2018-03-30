@@ -122,6 +122,8 @@ GameObject:
   m_Component:
   - component: {fileID: 514896366}
   - component: {fileID: 514896365}
+  - component: {fileID: 514896368}
+  - component: {fileID: 514896367}
   m_Layer: 0
   m_Name: SettingsHolder
   m_TagString: Untagged
@@ -158,6 +160,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &514896367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 514896364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21747bc6fc238134e88acbb8ba3ab296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentShield: 100
+  MaximumShield: 100
+  HorizontalMoveSpeed: 2
+  VerticalMoveSpeed: 2
+--- !u!114 &514896368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 514896364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ef27b6c17bff54bbafc8f7d286c49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 10
+  FireRate: 15
 --- !u!1 &1105248844
 GameObject:
   m_ObjectHideFlags: 0
