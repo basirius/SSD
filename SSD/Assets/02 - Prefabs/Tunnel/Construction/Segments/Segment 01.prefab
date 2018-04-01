@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4600653522768558}
   - component: {fileID: 33304663292286386}
   - component: {fileID: 23000154914769158}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Panel 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4251341977331658}
   - component: {fileID: 33339000313428752}
   - component: {fileID: 23780539601927408}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Panel 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4649103572142398}
   - component: {fileID: 33988060005779476}
   - component: {fileID: 23531834190782824}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Panel 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,9 +70,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4010345393858312}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Segment 01
-  m_TagString: Untagged
+  m_TagString: Tunnel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4057018818687182}
   - component: {fileID: 33926692054121644}
   - component: {fileID: 23809166132712704}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Panel 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4845323178391772}
   - component: {fileID: 33105173903310794}
   - component: {fileID: 23256182536568640}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Panel 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 4194887809170582}
   - component: {fileID: 33067017824905470}
   - component: {fileID: 23650673325889436}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Panel 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 4479298377571972}
   - component: {fileID: 33193504992372098}
   - component: {fileID: 23711130383816276}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Panel 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 4663096570465044}
   - component: {fileID: 33753800785728308}
   - component: {fileID: 23994456014224080}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Panel 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PLayerController : MonoBehaviour {
+public class CameraPointBehaviour : MonoBehaviour {
 
     private float movementSpeed;
     private float moveHorizontal = 0;
     private float moveVertical = 0;
     private float horizontalMoveSpeed;
     private float verticalMoveSpeed;
-    private float currentShield;
-    private float maximumShield;
     private Vector3 positionLimit;
 
     void Start () {
@@ -18,19 +16,18 @@ public class PLayerController : MonoBehaviour {
         movementSpeed = gameManager.LevelSpeed;
         horizontalMoveSpeed = gameManager.HorizontalMoveSpeed;
         verticalMoveSpeed = gameManager.VerticalMoveSpeed;
-        currentShield = gameManager.CurrentShield;
-        maximumShield = gameManager.MaximumShield;
     }
+	
 
-    void Update () {
-        MoveShip();
-    }
+	void Update () {
+        MovePoint();
+	}
 
-    private void MoveShip()
+    private void MovePoint()
     {
         positionLimit = transform.position;
-        positionLimit.x = Mathf.Clamp(positionLimit.x, -55.0f, 55.0f);
-        positionLimit.y = Mathf.Clamp(positionLimit.y, -55.0f, 55.0f);
+        positionLimit.x = Mathf.Clamp(positionLimit.x, -20.0f, 20.0f);
+        positionLimit.y = Mathf.Clamp(positionLimit.y, -20.0f, 20.0f);
         transform.position = positionLimit;
         moveHorizontal = Input.GetAxis("Horizontal");
         moveVertical = Input.GetAxis("Vertical");
@@ -38,15 +35,4 @@ public class PLayerController : MonoBehaviour {
         transform.Translate(0.0f, moveVertical * verticalMoveSpeed, 0.0f);
         transform.Translate(0, 0, movementSpeed * Time.deltaTime);
     }
-
-    private void TakeDamage(float damage)
-    {
-        
-    }
-
-    private void RestoreShield(float shield)
-    {
-
-    }
-
 }
