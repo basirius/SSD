@@ -16,19 +16,28 @@ public class TunnelBehaviour : MonoBehaviour {
     private float tunnelSegmentLength;
     private int tunnelSegmentSpawnPerSecond;
     private int numberOftunnelSegmentSpawnsInEachInterval;
+    private bool spawnStartFlag;
+    private float spawnStartDelay;
 
     // Game Objects
     private GameObject tunnelSegment;
+    private GameObject[] SpawnGameObjects;
+
+
+
 
     void Start () {
         GameManager gameManager = GameManager.Instance;
-        MovementSpeed = gameManager.LevelSpeed;
-        tunnelSegment = gameManager.TunnelSegment;
-        tunnelSegmentLength = gameManager.TunnelSegmentLength;
-        spawnInterval = gameManager.SpawnInterval;
+        this.MovementSpeed = gameManager.LevelSpeed;
+        this.tunnelSegment = gameManager.TunnelSegment;
+        this.tunnelSegmentLength = gameManager.TunnelSegmentLength;
+        this.spawnInterval = gameManager.SpawnInterval;
+        this.spawnStartDelay = gameManager.StartSpawnDelay;
+        this.SpawnGameObjects = gameManager.SpawnGameObjects;
         tunnelSegmentSpawnPerSecond = (int)(MovementSpeed / tunnelSegmentLength);
-        numberOftunnelSegmentSpawnsInEachInterval = (int)(tunnelSegmentSpawnPerSecond * spawnInterval);
-        SpawnTunnelSection(-1520); // this creates an initial portion of the tunnel
+        numberOftunnelSegmentSpawnsInEachInterval = (int)(tunnelSegmentSpawnPerSecond * 5); // this is the hard coded spawn interval. Make it parametric
+        SpawnTunnelSection(-1560); // this creates an initial portion of the tunnel
+        Invoke("StartSpawning", spawnStartDelay);
     }
 	
 	void Update () {
@@ -37,26 +46,39 @@ public class TunnelBehaviour : MonoBehaviour {
         Spawn();
     }
 
+    /// <summary>
+    /// Sets the flag to start spawning the tunnel sections and game objects
+    /// </summary>
+    void StartSpawning()
+    {
+        spawnStartFlag = true;
+    }
+
     void Spawn()
     {
         if (Time.timeSinceLevelLoad > nextSpawnTime)
         {
             SpawnTunnelSection(0);
             nextSpawnTime += spawnInterval;
+            SpawnPassiveObjects();
         }
     }
 
     void SpawnPassiveObjects()
     {
-
+        if (spawnStartFlag)
+        {
+            spawnPositionX = Random.Range(-55, 55);
+            spawnPositionY = Random.Range(-55, 55);
+            Vector3 spawnPositionVector = new Vector3(spawnPositionX, spawnPositionY, transform.position.z);
+            Instantiate(SpawnGameObjects[0], spawnPositionVector, Quaternion.identity);
+        }
     }
 
     void SpawnActiveObjects()
     {
-
+        // Check for spawnStartFlag
     }
-
-
 
     /// <summary>
     /// Spawn a tunnel section made of tunnel segments

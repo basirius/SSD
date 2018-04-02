@@ -12,7 +12,12 @@ ModelImporter:
     3300000: PA_DropPod 1
     4300000: PA_DropPod
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PA_DropPodMat
+    second: {fileID: 2100000, guid: af0d33e3f402ddc4dade40562c3c1ec2, type: 2}
   materials:
     importMaterials: 1
     materialName: 1
@@ -31,7 +36,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -86,7 +91,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 1
   userData: 
