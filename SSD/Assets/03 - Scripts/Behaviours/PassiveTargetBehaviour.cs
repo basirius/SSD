@@ -7,6 +7,11 @@ public class PassiveTargetBehaviour : MonoBehaviour
     public bool IsDamaging;
     public float Damage;
     public int HitPoints;
+    [Header("Probability of being Spawned")]
+    [Tooltip("select a number between 1 and 100")]
+    public float SpawnProbability;
+    [HideInInspector]
+    public float SpawnRelativeCalculatedWeight;
 
     private float randomXrotation = 0;
     private float randomYrotation = 0;
@@ -26,7 +31,7 @@ public class PassiveTargetBehaviour : MonoBehaviour
         isTargetHealthZero = false;
         //destructionSound = transform.GetComponent<AudioSource>();
         collectibleProbability = Random.value;
-        Destroy(gameObject, 100);
+        Destroy(gameObject, 20);
     }
 
     void Update()
@@ -57,7 +62,7 @@ public class PassiveTargetBehaviour : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            other.SendMessage((IsDamaging) ? "TakeDamage" : "HealShield", Damage);
+            other.SendMessage((IsDamaging) ? "TakeDamage" : "RestoreShield", Damage);
             HitPoints = 0;
         }
 

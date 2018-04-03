@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 33951956311380942}
   - component: {fileID: 23930718845922668}
   - component: {fileID: 114704217128977104}
-  m_Layer: 0
+  - component: {fileID: 136856163450452148}
+  m_Layer: 10
   m_Name: 02 - Shield
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1439925065566620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -96,6 +97,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsDamaging: 0
   Damage: 50
-  TargetHitPoints: 20
-  Explosion: {fileID: 0}
-  Collectible: {fileID: 0}
+  HitPoints: 20
+  SpawnProbability: 40
+--- !u!136 &136856163450452148
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1439925065566620}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.33, z: 0}

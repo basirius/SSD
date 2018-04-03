@@ -41,12 +41,14 @@ public class PLayerController : MonoBehaviour {
 
     private void TakeDamage(float damage)
     {
-        
+        currentShield -= damage;
+        print(currentShield);
     }
 
     private void RestoreShield(float shield)
     {
-
+        currentShield += shield;
+        print(currentShield);
     }
 
 }

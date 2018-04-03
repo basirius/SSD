@@ -6,25 +6,26 @@ using UnityEngine;
 
 public class TunnelBehaviour : MonoBehaviour {
 
-    // Variables
-    private float MovementSpeed;
+    #region Variables
+
     private float nextSpawnTime = 0;
     private float spawnPositionX;
     private float spawnPositionY;
     private float randomSpawnerSelector;
     private float spawnInterval;
+    private bool spawnStartFlag;
+    private float spawnStartDelay;
+    private float totalSpawnProbability;
+
+    private float MovementSpeed;
     private float tunnelSegmentLength;
     private int tunnelSegmentSpawnPerSecond;
     private int numberOftunnelSegmentSpawnsInEachInterval;
-    private bool spawnStartFlag;
-    private float spawnStartDelay;
+    #endregion
 
     // Game Objects
     private GameObject tunnelSegment;
-    private GameObject[] SpawnGameObjects;
-
-
-
+    private GameObject[] spawnGameObjects;
 
     void Start () {
         GameManager gameManager = GameManager.Instance;
@@ -33,17 +34,47 @@ public class TunnelBehaviour : MonoBehaviour {
         this.tunnelSegmentLength = gameManager.TunnelSegmentLength;
         this.spawnInterval = gameManager.SpawnInterval;
         this.spawnStartDelay = gameManager.StartSpawnDelay;
-        this.SpawnGameObjects = gameManager.SpawnGameObjects;
+        this.spawnGameObjects = gameManager.SpawnGameObjects;
+        this.totalSpawnProbability = 0;
         tunnelSegmentSpawnPerSecond = (int)(MovementSpeed / tunnelSegmentLength);
         numberOftunnelSegmentSpawnsInEachInterval = (int)(tunnelSegmentSpawnPerSecond * 5); // this is the hard coded spawn interval. Make it parametric
         SpawnTunnelSection(-1560); // this creates an initial portion of the tunnel
         Invoke("StartSpawning", spawnStartDelay);
+
+        // these two loops normalise the probability of spawning each target
+        foreach (GameObject gameObject in spawnGameObjects)
+        {
+            PassiveTargetBehaviour spawnBehaviour = gameObject.GetComponent<PassiveTargetBehaviour>();
+            totalSpawnProbability += spawnBehaviour.SpawnProbability;
+        }
+
+        foreach (GameObject gameObject in spawnGameObjects)
+        {
+            PassiveTargetBehaviour spawnBehaviour = gameObject.GetComponent<PassiveTargetBehaviour>();
+            spawnBehaviour.SpawnRelativeCalculatedWeight = (spawnBehaviour.SpawnProbability) / totalSpawnProbability;
+            print(spawnBehaviour.SpawnRelativeCalculatedWeight);
+        }
     }
 	
 	void Update () {
         randomSpawnerSelector = Random.Range(1, 100);
         transform.Translate(0, 0, MovementSpeed * Time.deltaTime);
-        Spawn();
+        Spawn(SpawnIndexSelector());
+    }
+
+    int SpawnIndexSelector()
+    {
+        float rand = Random.value;
+        
+
+        foreach (GameObject gameObject in spawnGameObjects)
+        {
+            PassiveTargetBehaviour spawnBehaviour = gameObject.GetComponent<PassiveTargetBehaviour>();
+            // develop logic to find the index. 
+        }
+
+
+        return 1;
     }
 
     /// <summary>
@@ -54,24 +85,27 @@ public class TunnelBehaviour : MonoBehaviour {
         spawnStartFlag = true;
     }
 
-    void Spawn()
+
+
+
+    void Spawn(int spawnIndex)
     {
         if (Time.timeSinceLevelLoad > nextSpawnTime)
         {
             SpawnTunnelSection(0);
             nextSpawnTime += spawnInterval;
-            SpawnPassiveObjects();
+            SpawnPassiveObjects(spawnIndex);
         }
     }
 
-    void SpawnPassiveObjects()
+    void SpawnPassiveObjects(int spawnIndex)
     {
         if (spawnStartFlag)
         {
             spawnPositionX = Random.Range(-55, 55);
             spawnPositionY = Random.Range(-55, 55);
             Vector3 spawnPositionVector = new Vector3(spawnPositionX, spawnPositionY, transform.position.z);
-            Instantiate(SpawnGameObjects[0], spawnPositionVector, Quaternion.identity);
+            Instantiate(spawnGameObjects[spawnIndex], spawnPositionVector, Quaternion.identity);
         }
     }
 

@@ -145,7 +145,7 @@ MonoBehaviour:
   LevelSpeed: 320
   SpawnInterval: 2
   TunnelSegmentLength: 80
-  SpawnStartDelay: 10
+  SpawnStartDelay: 0
   TunnelSegment: {fileID: 1196149206703658, guid: 8d72854a21e1f6249a00bc14c228dcb0,
     type: 2}
   SpawnGameObjects:
