@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -21,6 +22,7 @@ public class TunnelBehaviour : MonoBehaviour {
     private float tunnelSegmentLength;
     private int tunnelSegmentSpawnPerSecond;
     private int numberOftunnelSegmentSpawnsInEachInterval;
+    private SortedDictionary<float, int> sortedSpawnProbabilityDictionary = new SortedDictionary<float, int>();
     #endregion
 
     // Game Objects
@@ -48,12 +50,14 @@ public class TunnelBehaviour : MonoBehaviour {
             totalSpawnProbability += spawnBehaviour.SpawnProbability;
         }
 
-        foreach (GameObject gameObject in spawnGameObjects)
+        for (int i = 0; i < spawnGameObjects.Length; i++)
         {
-            PassiveTargetBehaviour spawnBehaviour = gameObject.GetComponent<PassiveTargetBehaviour>();
-            spawnBehaviour.SpawnRelativeCalculatedWeight = (spawnBehaviour.SpawnProbability) / totalSpawnProbability;
-            print(spawnBehaviour.SpawnRelativeCalculatedWeight);
+            PassiveTargetBehaviour spawnBehaviour = spawnGameObjects[i].GetComponent<PassiveTargetBehaviour>();
+            float weight = (spawnBehaviour.SpawnProbability) / totalSpawnProbability;
+            spawnBehaviour.SpawnRelativeCalculatedWeight = weight;
+            sortedSpawnProbabilityDictionary.Add(weight, i);
         }
+
     }
 	
 	void Update () {
@@ -62,19 +66,25 @@ public class TunnelBehaviour : MonoBehaviour {
         Spawn(SpawnIndexSelector());
     }
 
+
+    /// <summary>
+    /// This method returns the index of a game object to be spawned based on the weighted probability and a random selector
+    /// </summary>
+    /// <returns> the index of the game object to spawn for the passive targets</returns>
     int SpawnIndexSelector()
     {
-        float rand = Random.value;
-        
+        float random = Random.value;
 
-        foreach (GameObject gameObject in spawnGameObjects)
+        foreach (var item in sortedSpawnProbabilityDictionary)
         {
-            PassiveTargetBehaviour spawnBehaviour = gameObject.GetComponent<PassiveTargetBehaviour>();
-            // develop logic to find the index. 
+            if (random < item.Key)
+            {
+                return item.Value;
+            }
         }
-
-
-        return 1;
+        int defaultSpawnGameObjectIndex = sortedSpawnProbabilityDictionary.Values.Last();
+        return defaultSpawnGameObjectIndex;
+        
     }
 
     /// <summary>
