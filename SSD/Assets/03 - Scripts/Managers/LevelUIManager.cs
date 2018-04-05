@@ -6,20 +6,24 @@ using UnityEngine.UI;
 public class LevelUIManager : UnitySingleton<LevelUIManager> {
 
     public Image CurrentShieldBar;
-    private float currentShield = 150;
-    private float maximumShield = 150;
+    [HideInInspector]
+    public float CurrentShield;
+    [HideInInspector]
+    public float MaximumShield;
+    private float shieldBarRatio;
+
 
 	void Start () {
-        GameManager gameManager = GameManager.Instance;
-
+        UpdateUI();
     }
 	
 	void Update () {
-		
-	}
+        UpdateUI();
+    }
 
     private void UpdateUI()
     {
-
+        shieldBarRatio = CurrentShield / MaximumShield;
+        CurrentShieldBar.rectTransform.localScale = new Vector3(shieldBarRatio, 1, 1);
     }
 }

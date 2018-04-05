@@ -1002,6 +1002,11 @@ Prefab:
       propertyPath: m_Range
       value: 1600
       objectReference: {fileID: 0}
+    - target: {fileID: 114885413941937028, guid: eb55591c7ab06784b8766b566944bb07,
+        type: 2}
+      propertyPath: levelUIHolder
+      value: 
+      objectReference: {fileID: 2083021535}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb55591c7ab06784b8766b566944bb07, type: 2}
   m_IsPrefabParent: 0
@@ -1087,7 +1092,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbdd8a331820b54fae8e3c8cbcb0b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
+  CurrentShieldBar: {fileID: 1453730168}
+  CurrentShield: 0
+  MaximumShield: 0
 --- !u!4 &2083021537
 Transform:
   m_ObjectHideFlags: 0

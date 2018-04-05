@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PLayerController : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject levelUIHolder;
+    private LevelUIManager levelUIManager;
     private float movementSpeed;
     private float moveHorizontal = 0;
     private float moveVertical = 0;
@@ -12,14 +15,18 @@ public class PLayerController : MonoBehaviour {
     private float currentShield;
     private float maximumShield;
     private Vector3 positionLimit;
+    private GameManager gameManager;
 
     void Start () {
-        GameManager gameManager = GameManager.Instance;
+        gameManager = GameManager.Instance;
         movementSpeed = gameManager.LevelSpeed;
         horizontalMoveSpeed = gameManager.HorizontalMoveSpeed;
         verticalMoveSpeed = gameManager.VerticalMoveSpeed;
         currentShield = gameManager.CurrentShield;
         maximumShield = gameManager.MaximumShield;
+        levelUIManager = levelUIHolder.GetComponent<LevelUIManager>();
+        levelUIManager.MaximumShield = this.maximumShield;
+        levelUIManager.CurrentShield = this.currentShield;
     }
 
     void Update () {
@@ -42,12 +49,22 @@ public class PLayerController : MonoBehaviour {
     private void TakeDamage(float damage)
     {
         currentShield -= damage;
+        if (currentShield < 0)
+        {
+            currentShield = 0;
+        }
+        levelUIManager.CurrentShield = this.currentShield;
         print(currentShield);
     }
 
     private void RestoreShield(float shield)
     {
         currentShield += shield;
+        if (currentShield > maximumShield)
+        {
+            currentShield = maximumShield;
+        }
+        levelUIManager.CurrentShield = this.currentShield;
         print(currentShield);
     }
 
