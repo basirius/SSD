@@ -6,6 +6,8 @@ public class PLayerController : MonoBehaviour {
 
     [SerializeField]
     private GameObject levelUIHolder;
+    [SerializeField]
+    private Transform firePoint;
     private LevelUIManager levelUIManager;
     private float movementSpeed;
     private float moveHorizontal = 0;
@@ -14,6 +16,10 @@ public class PLayerController : MonoBehaviour {
     private float verticalMoveSpeed;
     private float currentShield;
     private float maximumShield;
+    private float nextTimeToFire = 0;
+    private float fireRate = 15;
+    private GameObject projectile;
+
     private Vector3 positionLimit;
     private GameManager gameManager;
 
@@ -31,6 +37,24 @@ public class PLayerController : MonoBehaviour {
 
     void Update () {
         MoveShip();
+    }
+
+    private void FireWeapon()
+    {
+        if (Input.GetButton("Fire1") && Time.time > nextTimeToFire)
+        {
+            GameObject projectileInstance = Instantiate(projectile, firePoint.position, Quaternion.identity, transform);
+            Rigidbody rb = projectileInstance.GetComponent<Rigidbody>();
+            rb.AddForce(0.0f, 0.0f, 30000.0f);
+            nextTimeToFire = Time.time + 1f / fireRate;
+            Destroy(projectileInstance, 2.0f);
+            //fireSound.Play();
+            //fireLight.intensity = 10.0f;
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            // fireLight.intensity = 0.0f;
+        }
     }
 
     private void MoveShip()

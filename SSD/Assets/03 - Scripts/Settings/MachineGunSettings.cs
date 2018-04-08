@@ -6,4 +6,5 @@ public class MachineGunSettings : MonoBehaviour {
 
     public float Damage;
     public float FireRate;
+    public GameObject[] Bullets;
 }

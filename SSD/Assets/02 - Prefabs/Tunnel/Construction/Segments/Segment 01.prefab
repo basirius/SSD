@@ -70,6 +70,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4010345393858312}
+  - component: {fileID: 114580462437671494}
   m_Layer: 9
   m_Name: Segment 01
   m_TagString: Tunnel
@@ -230,7 +231,7 @@ Transform:
   m_GameObject: {fileID: 1665896520798390}
   m_LocalRotation: {x: -0, y: -0, z: 0.92387956, w: 0.38268343}
   m_LocalPosition: {x: 68, y: 68, z: 0}
-  m_LocalScale: {x: 80.00003, y: 1, z: 80}
+  m_LocalScale: {x: 80, y: 1, z: 80}
   m_Children: []
   m_Father: {fileID: 4010345393858312}
   m_RootOrder: 3
@@ -243,7 +244,7 @@ Transform:
   m_GameObject: {fileID: 1077993154387236}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -96, y: 0, z: 0}
-  m_LocalScale: {x: 80.00003, y: 1, z: 80}
+  m_LocalScale: {x: 80, y: 1, z: 80}
   m_Children: []
   m_Father: {fileID: 4010345393858312}
   m_RootOrder: 6
@@ -282,7 +283,7 @@ Transform:
   m_GameObject: {fileID: 1407737469881648}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 96, y: 0, z: 0}
-  m_LocalScale: {x: 80.00003, y: 1, z: 80}
+  m_LocalScale: {x: 80, y: 1, z: 80}
   m_Children: []
   m_Father: {fileID: 4010345393858312}
   m_RootOrder: 2
@@ -615,3 +616,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1156418995711842}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114580462437671494
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1196149206703658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6aea0eb414bb3249af26c2b67f6aa0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationSpeed: 0

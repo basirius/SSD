@@ -14,6 +14,8 @@ public class GameManager : UnitySingletonPersistent<GameManager> {
     [HideInInspector]
     public float SpawnInterval;
     [HideInInspector]
+    public float TunnelSpawnInterval;
+    [HideInInspector]
     public GameObject TunnelSegment;
     [HideInInspector]
     public float TunnelSegmentLength;
@@ -47,6 +49,7 @@ public class GameManager : UnitySingletonPersistent<GameManager> {
         // Tunnel Settings
         Level01Settings level01Settings =  Settings.GetComponent<Level01Settings>();
         this.SpawnInterval = level01Settings.SpawnInterval;
+        this.TunnelSpawnInterval = level01Settings.TunnelSpawnInterval;
         this.StartSpawnDelay = level01Settings.SpawnStartDelay;
         this.LevelSpeed = level01Settings.LevelSpeed;
         this.TunnelSegment = level01Settings.TunnelSegment;

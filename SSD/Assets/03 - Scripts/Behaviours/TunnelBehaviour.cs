@@ -8,20 +8,21 @@ using UnityEngine;
 public class TunnelBehaviour : MonoBehaviour {
 
     #region Variables
-
-    private float nextSpawnTime = 0;
+    private float nextTargetSpawnTime = 0;
+    private float nextTunnelSpawnTime = 0;
     private float spawnPositionX;
     private float spawnPositionY;
     private float randomSpawnerSelector;
     private float spawnInterval;
+    private float tunnelSpawnInterval;
     private bool spawnStartFlag;
     private float spawnStartDelay;
     private float totalSpawnProbability;
-
     private float MovementSpeed;
     private float tunnelSegmentLength;
     private int tunnelSegmentSpawnPerSecond;
     private int numberOftunnelSegmentSpawnsInEachInterval;
+    Vector3 tunnelSegmentSpawnPosition = new Vector3();
     private SortedDictionary<float, int> sortedSpawnProbabilityDictionary = new SortedDictionary<float, int>();
     #endregion
 
@@ -35,11 +36,13 @@ public class TunnelBehaviour : MonoBehaviour {
         this.tunnelSegment = gameManager.TunnelSegment;
         this.tunnelSegmentLength = gameManager.TunnelSegmentLength;
         this.spawnInterval = gameManager.SpawnInterval;
+        this.tunnelSpawnInterval = gameManager.TunnelSpawnInterval;
         this.spawnStartDelay = gameManager.StartSpawnDelay;
         this.spawnGameObjects = gameManager.SpawnGameObjects;
         this.totalSpawnProbability = 0;
         tunnelSegmentSpawnPerSecond = (int)(MovementSpeed / tunnelSegmentLength);
-        numberOftunnelSegmentSpawnsInEachInterval = (int)(tunnelSegmentSpawnPerSecond * 5); // this is the hard coded spawn interval. Make it parametric
+        numberOftunnelSegmentSpawnsInEachInterval = (int)(tunnelSegmentSpawnPerSecond * tunnelSpawnInterval);
+        tunnelSegmentSpawnPosition = Vector3.zero;
         SpawnTunnelSection(-1560); // this creates an initial portion of the tunnel
         Invoke("StartSpawning", spawnStartDelay);
 
@@ -63,7 +66,8 @@ public class TunnelBehaviour : MonoBehaviour {
 	void Update () {
         randomSpawnerSelector = Random.Range(1, 100);
         transform.Translate(0, 0, MovementSpeed * Time.deltaTime);
-        Spawn(SpawnIndexSelector());
+        SpawnTargets(SpawnIndexSelector());
+        SpawnTunnel();
     }
 
 
@@ -96,14 +100,20 @@ public class TunnelBehaviour : MonoBehaviour {
     }
 
 
-
-
-    void Spawn(int spawnIndex)
+    void SpawnTunnel()
     {
-        if (Time.timeSinceLevelLoad > nextSpawnTime)
+        if (Time.timeSinceLevelLoad > nextTunnelSpawnTime)
         {
             SpawnTunnelSection(0);
-            nextSpawnTime += spawnInterval;
+            nextTunnelSpawnTime += tunnelSpawnInterval;
+        }
+    }
+
+    void SpawnTargets(int spawnIndex)
+    {
+        if (Time.timeSinceLevelLoad > nextTargetSpawnTime)
+        {
+            nextTargetSpawnTime += spawnInterval;
             SpawnPassiveObjects(spawnIndex);
         }
     }
@@ -129,12 +139,13 @@ public class TunnelBehaviour : MonoBehaviour {
     /// </summary>
     void SpawnTunnelSection(float startingPoint)
     {
-        Vector3 tunnelSegmentSpawnPosition = new Vector3();
-        tunnelSegmentSpawnPosition = transform.position;
+        
+
+        // tunnelSegmentSpawnPosition = transform.position;
 
         for (int i = 0; i < numberOftunnelSegmentSpawnsInEachInterval; i++)
         {
-            tunnelSegmentSpawnPosition.z = transform.position.z + i * 80 + startingPoint;
+            tunnelSegmentSpawnPosition.z = transform.position.z + i * tunnelSegmentLength + startingPoint;
             Instantiate(tunnelSegment, tunnelSegmentSpawnPosition, Quaternion.identity);
         }
     }

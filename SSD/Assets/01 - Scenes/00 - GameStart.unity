@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelSpeed: 320
   SpawnInterval: 2
+  TunnelSpawnInterval: 5
   TunnelSegmentLength: 80
   SpawnStartDelay: 0
   TunnelSegment: {fileID: 1196149206703658, guid: 8d72854a21e1f6249a00bc14c228dcb0,
@@ -175,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21747bc6fc238134e88acbb8ba3ab296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentShield: 80
+  CurrentShield: 100
   MaximumShield: 100
   HorizontalMoveSpeed: 3
   VerticalMoveSpeed: 3
@@ -192,6 +193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 10
   FireRate: 15
+  Bullets:
+  - {fileID: 1987161718406214, guid: 3d9f00e42f8b2164e95a64326727df3d, type: 2}
 --- !u!1 &1105248844
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelSpeed: 0
   SpawnInterval: 0
+  TunnelSpawnInterval: 0
   TunnelSegment: {fileID: 0}
   TunnelSegmentLength: 0
   StartSpawnDelay: 0
