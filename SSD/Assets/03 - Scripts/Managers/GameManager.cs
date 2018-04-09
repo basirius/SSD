@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : UnitySingletonPersistent<GameManager> {
+public class GameManager : UnitySingletonPersistent<GameManager>
+{
 
     // This is the main persistent singleton Game Manager
     // to use this in any script in the game : gameManager = GameManager.Instance;
@@ -39,6 +40,15 @@ public class GameManager : UnitySingletonPersistent<GameManager> {
     public float VerticalMoveSpeed;
     #endregion
 
+    #region Machine Gun Variables
+    [HideInInspector]
+    public float Damage;
+    [HideInInspector]
+    public float FireRate;
+    [HideInInspector]
+    public GameObject[] Bullets;
+    #endregion
+
     // Machine Gun Variables
 
     public GameObject Settings;
@@ -47,7 +57,7 @@ public class GameManager : UnitySingletonPersistent<GameManager> {
     {
         Cursor.visible = true;
         // Tunnel Settings
-        Level01Settings level01Settings =  Settings.GetComponent<Level01Settings>();
+        Level01Settings level01Settings = Settings.GetComponent<Level01Settings>();
         this.SpawnInterval = level01Settings.SpawnInterval;
         this.TunnelSpawnInterval = level01Settings.TunnelSpawnInterval;
         this.StartSpawnDelay = level01Settings.SpawnStartDelay;
@@ -55,7 +65,7 @@ public class GameManager : UnitySingletonPersistent<GameManager> {
         this.TunnelSegment = level01Settings.TunnelSegment;
         this.SpawnGameObjects = level01Settings.SpawnGameObjects;
         this.TunnelSegmentLength = level01Settings.TunnelSegmentLength;
-        
+
 
         // Ship Settings
         ShipSettings shipSettings = Settings.GetComponent<ShipSettings>();
@@ -63,6 +73,14 @@ public class GameManager : UnitySingletonPersistent<GameManager> {
         this.MaximumShield = shipSettings.MaximumShield;
         this.HorizontalMoveSpeed = shipSettings.HorizontalMoveSpeed;
         this.VerticalMoveSpeed = shipSettings.VerticalMoveSpeed;
+
+        // Machine Gun Settings
+        MachineGunSettings machineGunSettings = Settings.GetComponent<MachineGunSettings>();
+        this.FireRate = machineGunSettings.FireRate;
+        this.Damage = machineGunSettings.Damage;
+        this.Bullets = machineGunSettings.Bullets;
+
+        // Load the Scene
         SceneManager.LoadScene("01 - Scenes/00 - StartMenu");
     }
 }

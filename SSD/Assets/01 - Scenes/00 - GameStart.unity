@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 10
-  FireRate: 15
+  FireRate: 20
   Bullets:
   - {fileID: 1987161718406214, guid: 3d9f00e42f8b2164e95a64326727df3d, type: 2}
 --- !u!1 &1105248844
@@ -410,6 +410,9 @@ MonoBehaviour:
   MaximumShield: 0
   HorizontalMoveSpeed: 0
   VerticalMoveSpeed: 0
+  Damage: 0
+  FireRate: 0
+  Bullets: []
   Settings: {fileID: 514896364}
 --- !u!4 &1747093704
 Transform:

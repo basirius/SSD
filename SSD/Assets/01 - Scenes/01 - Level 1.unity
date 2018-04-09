@@ -584,6 +584,11 @@ Prefab:
       propertyPath: firePoint
       value: 
       objectReference: {fileID: 1092906728}
+    - target: {fileID: 114885413941937028, guid: eb55591c7ab06784b8766b566944bb07,
+        type: 2}
+      propertyPath: levelUIManager
+      value: 
+      objectReference: {fileID: 2083021536}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb55591c7ab06784b8766b566944bb07, type: 2}
   m_IsPrefabParent: 0

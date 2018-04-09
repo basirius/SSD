@@ -2,55 +2,73 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PLayerController : MonoBehaviour {
-
+public class PLayerController : MonoBehaviour
+{
+    // UI
     [SerializeField]
     private GameObject levelUIHolder;
     [SerializeField]
-    private Transform firePoint;
     private LevelUIManager levelUIManager;
+
+    // Ship
     private float movementSpeed;
     private float moveHorizontal = 0;
     private float moveVertical = 0;
+    private Vector3 positionLimit;
     private float horizontalMoveSpeed;
     private float verticalMoveSpeed;
     private float currentShield;
     private float maximumShield;
-    private float nextTimeToFire = 0;
-    private float fireRate = 15;
-    private GameObject projectile;
 
-    private Vector3 positionLimit;
+    // Weapon
+    [SerializeField]
+    private Transform firePoint;
+    private float nextTimeToFire = 0;
+    private float fireRate;
+    private float damage;
+    private GameObject[] bullets;
+
+
     private GameManager gameManager;
 
-    void Start () {
+    void Start()
+    {
         gameManager = GameManager.Instance;
+
         movementSpeed = gameManager.LevelSpeed;
         horizontalMoveSpeed = gameManager.HorizontalMoveSpeed;
         verticalMoveSpeed = gameManager.VerticalMoveSpeed;
         currentShield = gameManager.CurrentShield;
         maximumShield = gameManager.MaximumShield;
+
+        fireRate = gameManager.FireRate;
+        damage = gameManager.Damage;
+        bullets = gameManager.Bullets;
+        print(bullets.Length);
+
         levelUIManager = levelUIHolder.GetComponent<LevelUIManager>();
         levelUIManager.MaximumShield = this.maximumShield;
         levelUIManager.CurrentShield = this.currentShield;
+
     }
 
-    void Update () {
+    void Update()
+    {
         MoveShip();
+        if (Input.GetButton("Fire1") && Time.time > nextTimeToFire)
+        {
+            FireWeapon();
+        }
+
     }
 
     private void FireWeapon()
     {
-        if (Input.GetButton("Fire1") && Time.time > nextTimeToFire)
-        {
-            GameObject projectileInstance = Instantiate(projectile, firePoint.position, Quaternion.identity, transform);
-            Rigidbody rb = projectileInstance.GetComponent<Rigidbody>();
-            rb.AddForce(0.0f, 0.0f, 30000.0f);
-            nextTimeToFire = Time.time + 1f / fireRate;
-            Destroy(projectileInstance, 2.0f);
-            //fireSound.Play();
-            //fireLight.intensity = 10.0f;
-        }
+        GameObject bulletInstance = Instantiate(bullets[0], firePoint.position, Quaternion.identity);
+        nextTimeToFire = Time.time + 1f / fireRate;
+        Destroy(bulletInstance, 2.0f);
+        //fireSound.Play();
+        //fireLight.intensity = 10.0f;
         if (Input.GetButtonUp("Fire1"))
         {
             // fireLight.intensity = 0.0f;
