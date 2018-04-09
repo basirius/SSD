@@ -6,7 +6,7 @@ public class PassiveTargetBehaviour : MonoBehaviour
 {
     public bool IsDamaging;
     public float Damage;
-    public int HitPoints;
+    public float HitPoints;
     [Header("Probability of being Spawned")]
     [Tooltip("select a number between 1 and 100")]
     public float SpawnProbability;
@@ -48,25 +48,44 @@ public class PassiveTargetBehaviour : MonoBehaviour
             //{
             //    Instantiate(Collectible, transform.position, Quaternion.identity);
             //}
-            Destroy(gameObject, 0.3f);
+            Destroy(gameObject);
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag == "Projectile")
+        if (collision.gameObject.tag == "Projectile")
         {
-            HitPoints -= 20;
-            // change this to take damage equal to the projectile damage amount
+            print("Hit th bullet");
+            HitPoints -= collision.gameObject.GetComponent<BulletBehaviour>().Damage;
+            Destroy(gameObject);
+            print(HitPoints);
+
         }
 
-        if (other.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
-            other.SendMessage((IsDamaging) ? "TakeDamage" : "RestoreShield", Damage);
+            collision.gameObject.SendMessage((IsDamaging) ? "TakeDamage" : "RestoreShield", Damage);
             HitPoints = 0;
         }
 
     }
+
+
+    //void OnCollisionEnter(Collider other)
+    //{
+    //    if (other.tag == "Player")
+    //    {
+    //        other.SendMessage((IsDamaging) ? "TakeDamage" : "RestoreShield", Damage);
+    //        HitPoints = 0;
+    //    }
+
+    //    if (other.tag == "Projectile")
+    //    {
+    //        print("Hit th bullet");
+    //        HitPoints -= other.GetComponent<BulletBehaviour>().Damage;
+    //    }
+    //}
 
     float ReturnRandom()
     {

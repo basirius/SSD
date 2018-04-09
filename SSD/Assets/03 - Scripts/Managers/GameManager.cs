@@ -42,7 +42,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     #region Machine Gun Variables
     [HideInInspector]
-    public float Damage;
+    public float GunBaseDamage;
     [HideInInspector]
     public float FireRate;
     [HideInInspector]
@@ -77,8 +77,14 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         // Machine Gun Settings
         MachineGunSettings machineGunSettings = Settings.GetComponent<MachineGunSettings>();
         this.FireRate = machineGunSettings.FireRate;
-        this.Damage = machineGunSettings.Damage;
+        this.GunBaseDamage = machineGunSettings.Damage;
         this.Bullets = machineGunSettings.Bullets;
+
+        foreach (var bullet in Bullets)
+        {
+            BulletBehaviour bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
+            bulletBehaviour.Damage = bulletBehaviour.BulletDamageModifier * GunBaseDamage;
+        }
 
         // Load the Scene
         SceneManager.LoadScene("01 - Scenes/00 - StartMenu");
