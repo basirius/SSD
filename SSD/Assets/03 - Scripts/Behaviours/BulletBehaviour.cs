@@ -6,15 +6,21 @@ public class BulletBehaviour : MonoBehaviour {
 
     public float ShotSpeed;
     public float BulletDamageModifier;
+    [HideInInspector]
     public float Damage;
-	
+    private AudioSource shotSound;
+
+	void Start (){
+		Destroy (gameObject, 2.0f);
+        shotSound = gameObject.GetComponent<AudioSource>();
+        if (!shotSound)
+        {
+            print("NotFound");
+        }
+        shotSound.Play();
+	}
+
 	void Update () {
         transform.Translate(0, 0, ShotSpeed * Time.deltaTime);
     }
-
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    other.SendMessage("TakeDamage" , Damage);
-    //    Destroy(gameObject);
-    //}
 }

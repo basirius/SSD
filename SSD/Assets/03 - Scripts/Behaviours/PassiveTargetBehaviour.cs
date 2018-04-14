@@ -52,40 +52,25 @@ public class PassiveTargetBehaviour : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
-        if (collision.gameObject.tag == "Projectile")
+        if (collider.gameObject.tag == "Projectile")
         {
-            print("Hit th bullet");
-            HitPoints -= collision.gameObject.GetComponent<BulletBehaviour>().Damage;
-            Destroy(gameObject);
-            print(HitPoints);
-
+            HitPoints -= collider.gameObject.GetComponent<BulletBehaviour>().Damage;
+            if (HitPoints <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
 
-        if (collision.gameObject.tag == "Player")
+        if (collider.gameObject.tag == "Player")
         {
-            collision.gameObject.SendMessage((IsDamaging) ? "TakeDamage" : "RestoreShield", Damage);
+            collider.gameObject.SendMessage((IsDamaging) ? "TakeDamage" : "RestoreShield", Damage);
             HitPoints = 0;
+            Destroy(gameObject);
         }
 
     }
-
-
-    //void OnCollisionEnter(Collider other)
-    //{
-    //    if (other.tag == "Player")
-    //    {
-    //        other.SendMessage((IsDamaging) ? "TakeDamage" : "RestoreShield", Damage);
-    //        HitPoints = 0;
-    //    }
-
-    //    if (other.tag == "Projectile")
-    //    {
-    //        print("Hit th bullet");
-    //        HitPoints -= other.GetComponent<BulletBehaviour>().Damage;
-    //    }
-    //}
 
     float ReturnRandom()
     {

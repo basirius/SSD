@@ -40,7 +40,6 @@ GameObject:
   - component: {fileID: 23304754582694198}
   - component: {fileID: 114885413941937028}
   - component: {fileID: 64573042819471530}
-  - component: {fileID: 54750627033251164}
   m_Layer: 8
   m_Name: Star Dust
   m_TagString: Player
@@ -336,21 +335,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1074423700761134}
   m_Mesh: {fileID: 4300000, guid: 564c86c1543c6eb4e8525374599f15cc, type: 3}
---- !u!54 &54750627033251164
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1074423700761134}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
 --- !u!64 &64573042819471530
 MeshCollider:
   m_ObjectHideFlags: 1

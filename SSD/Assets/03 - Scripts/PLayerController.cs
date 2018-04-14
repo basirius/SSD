@@ -44,7 +44,6 @@ public class PLayerController : MonoBehaviour
         fireRate = gameManager.FireRate;
         damage = gameManager.GunBaseDamage;
         bullets = gameManager.Bullets;
-        print(bullets.Length);
 
         levelUIManager = levelUIHolder.GetComponent<LevelUIManager>();
         levelUIManager.MaximumShield = this.maximumShield;

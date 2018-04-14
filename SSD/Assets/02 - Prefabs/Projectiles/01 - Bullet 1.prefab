@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShotSpeed: 2500
-  BulletDamageModifier: 0
+  BulletDamageModifier: 1
   Damage: 0
 --- !u!136 &136464395214597202
 CapsuleCollider:
@@ -121,7 +121,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1987161718406214}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 1
   m_Height: 1
