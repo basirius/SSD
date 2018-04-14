@@ -28,6 +28,8 @@ public class PLayerController : MonoBehaviour
     private float damage;
     private GameObject[] bullets;
 
+    // Dictionary of all the game objects
+    private Dictionary<string, Transform> childrenDictionary = new Dictionary<string, Transform>();
 
     private GameManager gameManager;
 
@@ -49,6 +51,11 @@ public class PLayerController : MonoBehaviour
         levelUIManager.MaximumShield = this.maximumShield;
         levelUIManager.CurrentShield = this.currentShield;
 
+        // populate the children dictionaru
+        foreach (Transform t in transform)
+        {
+            childrenDictionary.Add(t.name, t);
+        }
     }
 
     void Update()
@@ -95,7 +102,9 @@ public class PLayerController : MonoBehaviour
             currentShield = 0;
         }
         levelUIManager.CurrentShield = this.currentShield;
-        print(currentShield);
+        Transform shieldDamageEffect = childrenDictionary["PlasmaExplosionEffect"];
+        Transform shieldDamageEffectInstance = Instantiate(shieldDamageEffect, transform.position, transform.rotation);
+        shieldDamageEffectInstance.gameObject.SetActive(true);
     }
 
     private void RestoreShield(float shield)
