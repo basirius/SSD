@@ -115,7 +115,9 @@ public class PLayerController : MonoBehaviour
             currentShield = maximumShield;
         }
         levelUIManager.CurrentShield = this.currentShield;
-        print(currentShield);
+        Transform shieldRestoreEffect = childrenDictionary["ShieldRestoreEffect"];
+        Transform shieldRestoreEffectInstance = Instantiate(shieldRestoreEffect, transform.position, transform.rotation);
+        shieldRestoreEffectInstance.gameObject.SetActive(true);
     }
 
 }

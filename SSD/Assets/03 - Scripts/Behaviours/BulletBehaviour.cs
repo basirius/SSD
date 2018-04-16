@@ -13,14 +13,19 @@ public class BulletBehaviour : MonoBehaviour {
 	void Start (){
 		Destroy (gameObject, 2.0f);
         shotSound = gameObject.GetComponent<AudioSource>();
-        if (!shotSound)
-        {
-            print("NotFound");
-        }
         shotSound.Play();
 	}
 
 	void Update () {
         transform.Translate(0, 0, ShotSpeed * Time.deltaTime);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Target")
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }
