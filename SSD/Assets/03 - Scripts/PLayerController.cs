@@ -28,6 +28,10 @@ public class PLayerController : MonoBehaviour
     private float damage;
     private GameObject[] bullets;
 
+    // Music - they don't work and need fixing
+    //private AudioSource[] levelMusicArray;
+    //public AudioSource levelMusic;
+
     // Dictionary of all the game objects
     private Dictionary<string, Transform> childrenDictionary = new Dictionary<string, Transform>();
 
@@ -47,9 +51,17 @@ public class PLayerController : MonoBehaviour
         damage = gameManager.GunBaseDamage;
         bullets = gameManager.Bullets;
 
+        // The music array is not working and when I play I get the strange UI error. 
+        // I'm using the level music for the time being
+        //levelMusicArray = gameManager.LevelMusicArray;
+        //levelMusic = gameObject.GetComponent<AudioSource>();
+        //levelMusic.PlayOneShot(levelMusic.clip);
+
+
         levelUIManager = levelUIHolder.GetComponent<LevelUIManager>();
         levelUIManager.MaximumShield = this.maximumShield;
         levelUIManager.CurrentShield = this.currentShield;
+
 
         // populate the children dictionaru
         foreach (Transform t in transform)

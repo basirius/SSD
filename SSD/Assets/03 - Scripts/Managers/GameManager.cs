@@ -49,6 +49,11 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     public GameObject[] Bullets;
     #endregion
 
+    #region Music Variables
+    [HideInInspector]
+    public AudioSource[] LevelMusicArray;
+    #endregion
+
     // Machine Gun Variables
 
     public GameObject Settings;
@@ -57,15 +62,14 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     {
         Cursor.visible = true;
         // Tunnel Settings
-        Level01Settings level01Settings = Settings.GetComponent<Level01Settings>();
-        this.SpawnInterval = level01Settings.SpawnInterval;
-        this.TunnelSpawnInterval = level01Settings.TunnelSpawnInterval;
-        this.StartSpawnDelay = level01Settings.SpawnStartDelay;
-        this.LevelSpeed = level01Settings.LevelSpeed;
-        this.TunnelSegment = level01Settings.TunnelSegment;
-        this.SpawnGameObjects = level01Settings.SpawnGameObjects;
-        this.TunnelSegmentLength = level01Settings.TunnelSegmentLength;
-
+        var levelSettings = Settings.GetComponent<Level01Settings>();
+        this.SpawnInterval = levelSettings.SpawnInterval;
+        this.TunnelSpawnInterval = levelSettings.TunnelSpawnInterval;
+        this.StartSpawnDelay = levelSettings.SpawnStartDelay;
+        this.LevelSpeed = levelSettings.LevelSpeed;
+        this.TunnelSegment = levelSettings.TunnelSegment;
+        this.SpawnGameObjects = levelSettings.SpawnGameObjects;
+        this.TunnelSegmentLength = levelSettings.TunnelSegmentLength;
 
         // Ship Settings
         ShipSettings shipSettings = Settings.GetComponent<ShipSettings>();
@@ -85,6 +89,10 @@ public class GameManager : UnitySingletonPersistent<GameManager>
             BulletBehaviour bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
             bulletBehaviour.Damage = bulletBehaviour.BulletDamageModifier * GunBaseDamage;
         }
+
+        // Music Settings
+        this.LevelMusicArray = levelSettings.LevelMusicArray;
+
 
         // Load the Scene
         SceneManager.LoadScene("01 - Scenes/00 - StartMenu");
