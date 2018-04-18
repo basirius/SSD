@@ -51,7 +51,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     #region Music Variables
     [HideInInspector]
-    public AudioSource[] LevelMusicArray;
+    public GameObject LevelMusicObject;
     #endregion
 
     // Machine Gun Variables
@@ -91,8 +91,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         }
 
         // Music Settings
-        this.LevelMusicArray = levelSettings.LevelMusicArray;
-
+        this.LevelMusicObject = levelSettings.LevelMusicObject;
 
         // Load the Scene
         SceneManager.LoadScene("01 - Scenes/00 - StartMenu");

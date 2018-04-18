@@ -28,11 +28,10 @@ public class PLayerController : MonoBehaviour
     private float damage;
     private GameObject[] bullets;
 
-    // Music - they don't work and need fixing
-    //private AudioSource[] levelMusicArray;
-    //public AudioSource levelMusic;
+    // Music
+    private GameObject levelMusicObject;
 
-    // Dictionary of all the game objects
+    // Dictionary of all the children game objects
     private Dictionary<string, Transform> childrenDictionary = new Dictionary<string, Transform>();
 
     private GameManager gameManager;
@@ -51,11 +50,16 @@ public class PLayerController : MonoBehaviour
         damage = gameManager.GunBaseDamage;
         bullets = gameManager.Bullets;
 
-        // The music array is not working and when I play I get the strange UI error. 
-        // I'm using the level music for the time being
-        //levelMusicArray = gameManager.LevelMusicArray;
-        //levelMusic = gameObject.GetComponent<AudioSource>();
-        //levelMusic.PlayOneShot(levelMusic.clip);
+        // the music object don't make it here. I don't know why!
+        //levelMusicObject = gameManager.LevelMusicObject;
+
+        //if (!levelMusicObject)
+        //{
+        //    print("Not Found");
+        //} else
+        //{
+        //    print(levelMusicObject.name);
+        //}
 
 
         levelUIManager = levelUIHolder.GetComponent<LevelUIManager>();
@@ -75,6 +79,11 @@ public class PLayerController : MonoBehaviour
         MoveShip();
         if (Input.GetButton("Fire1") && Time.time > nextTimeToFire)
         {
+
+            Transform MuzzleFire = childrenDictionary["MachineGunLight"];
+            Transform muzzleFireInstance = Instantiate(MuzzleFire, firePoint.transform.position, transform.rotation);
+            muzzleFireInstance.gameObject.SetActive(true);
+            Destroy(muzzleFireInstance.gameObject, 0.1f);
             FireWeapon();
         }
 
@@ -85,11 +94,12 @@ public class PLayerController : MonoBehaviour
         GameObject bulletInstance = Instantiate(bullets[0], firePoint.position, Quaternion.identity);
         nextTimeToFire = Time.time + 1f / fireRate;
         Destroy(bulletInstance, 2.0f);
-        //fireSound.Play();
         //fireLight.intensity = 10.0f;
         if (Input.GetButtonUp("Fire1"))
         {
-            // fireLight.intensity = 0.0f;
+            Transform MuzzleFire = childrenDictionary["MachineGunLight"];
+            Transform muzzleFireInstance = Instantiate(MuzzleFire, firePoint.transform.position, transform.rotation);
+            muzzleFireInstance.gameObject.SetActive(false);
         }
     }
 

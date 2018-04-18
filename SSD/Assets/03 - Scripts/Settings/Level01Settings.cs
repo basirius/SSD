@@ -12,5 +12,5 @@ public class Level01Settings : MonoBehaviour
     public float SpawnStartDelay;
     public GameObject TunnelSegment;
     public GameObject[] SpawnGameObjects;
-    public AudioSource[] LevelMusicArray;
+    public GameObject LevelMusicObject;
 }
