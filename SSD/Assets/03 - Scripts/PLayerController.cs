@@ -94,12 +94,11 @@ public class PLayerController : MonoBehaviour
         GameObject bulletInstance = Instantiate(bullets[0], firePoint.position, Quaternion.identity);
         nextTimeToFire = Time.time + 1f / fireRate;
         Destroy(bulletInstance, 2.0f);
-        //fireLight.intensity = 10.0f;
         if (Input.GetButtonUp("Fire1"))
         {
-            Transform MuzzleFire = childrenDictionary["MachineGunLight"];
-            Transform muzzleFireInstance = Instantiate(MuzzleFire, firePoint.transform.position, transform.rotation);
-            muzzleFireInstance.gameObject.SetActive(false);
+            //Transform MuzzleFire = childrenDictionary["MachineGunLight"];
+            //Transform muzzleFireInstance = Instantiate(MuzzleFire, firePoint.transform.position, transform.rotation);
+            //muzzleFireInstance.gameObject.SetActive(false);
         }
     }
 

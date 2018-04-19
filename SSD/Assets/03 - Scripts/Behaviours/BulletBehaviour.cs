@@ -6,6 +6,7 @@ public class BulletBehaviour : MonoBehaviour {
 
     public float ShotSpeed;
     public float BulletDamageModifier;
+    public GameObject ImpactEffect;
     [HideInInspector]
     public float Damage;
     private AudioSource shotSound;
@@ -14,6 +15,7 @@ public class BulletBehaviour : MonoBehaviour {
 		Destroy (gameObject, 2.0f);
         shotSound = gameObject.GetComponent<AudioSource>();
         shotSound.Play();
+
 	}
 
 	void Update () {

@@ -17,9 +17,10 @@ public class PassiveTargetBehaviour : MonoBehaviour
     private float randomYrotation = 0;
     private float randomZrotation = 0;
 
-    //public Transform Explosion;
+    //private Transform Explosion;
     //private AudioSource destructionSound;
-    // public Transform Collectible;
+    //public Transform Collectible;
+    private GameObject impactEffectObject;
     private bool isTargetHealthZero;
     private float collectibleProbability;
 
@@ -57,6 +58,8 @@ public class PassiveTargetBehaviour : MonoBehaviour
         if (collider.gameObject.tag == "Projectile")
         {
             HitPoints -= collider.gameObject.GetComponent<BulletBehaviour>().Damage;
+            impactEffectObject = collider.gameObject.GetComponent<BulletBehaviour>().ImpactEffect;
+            Instantiate(impactEffectObject, collider.transform.position, collider.transform.rotation);
             if (HitPoints <= 0)
             {
                 Destroy(gameObject);
