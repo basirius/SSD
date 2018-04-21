@@ -7,6 +7,7 @@ public class PassiveTargetBehaviour : MonoBehaviour
     public bool IsDamaging;
     public float Damage;
     public float HitPoints;
+    public GameObject Explosion;
     [Header("Probability of being Spawned")]
     [Tooltip("select a number between 1 and 100")]
     public float SpawnProbability;
@@ -17,9 +18,6 @@ public class PassiveTargetBehaviour : MonoBehaviour
     private float randomYrotation = 0;
     private float randomZrotation = 0;
 
-    //private Transform Explosion;
-    //private AudioSource destructionSound;
-    //public Transform Collectible;
     private GameObject impactEffectObject;
     private bool isTargetHealthZero;
     private float collectibleProbability;
@@ -30,7 +28,6 @@ public class PassiveTargetBehaviour : MonoBehaviour
         randomYrotation = ReturnRandom();
         randomZrotation = ReturnRandom();
         isTargetHealthZero = false;
-        //destructionSound = transform.GetComponent<AudioSource>();
         collectibleProbability = Random.value;
         Destroy(gameObject, 20);
     }
@@ -41,15 +38,7 @@ public class PassiveTargetBehaviour : MonoBehaviour
 
         if (HitPoints <= 0 && !isTargetHealthZero)
         {
-            //Instantiate(Explosion, transform.position, Quaternion.identity);
-            //destructionSound.Play();
-
             isTargetHealthZero = true;
-            //if (collectibleProbability > 0.0f)
-            //{
-            //    Instantiate(Collectible, transform.position, Quaternion.identity);
-            //}
-            Destroy(gameObject);
         }
     }
 
@@ -62,6 +51,7 @@ public class PassiveTargetBehaviour : MonoBehaviour
             Instantiate(impactEffectObject, collider.transform.position, collider.transform.rotation);
             if (HitPoints <= 0)
             {
+                Instantiate(Explosion, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
         }

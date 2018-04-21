@@ -114,6 +114,7 @@ MonoBehaviour:
   IsDamaging: 0
   Damage: 50
   HitPoints: 20
+  Explosion: {fileID: 1579619931616168, guid: 93a190e3adfa35d47972c8f7914fecc1, type: 2}
   SpawnProbability: 40
   SpawnRelativeCalculatedWeight: 0.33333334
 --- !u!136 &136856163450452148
