@@ -8,6 +8,7 @@ public class PassiveTargetBehaviour : MonoBehaviour
     public float Damage;
     public float HitPoints;
     public GameObject Explosion;
+    public AudioSource ExplosionSound;
     [Header("Probability of being Spawned")]
     [Tooltip("select a number between 1 and 100")]
     public float SpawnProbability;
@@ -22,6 +23,7 @@ public class PassiveTargetBehaviour : MonoBehaviour
     private bool isTargetHealthZero;
     private float collectibleProbability;
 
+    private bool collisionWithPlayer;
     void Start()
     {
         randomXrotation = ReturnRandom();
@@ -29,6 +31,7 @@ public class PassiveTargetBehaviour : MonoBehaviour
         randomZrotation = ReturnRandom();
         isTargetHealthZero = false;
         collectibleProbability = Random.value;
+        collisionWithPlayer = false;
         Destroy(gameObject, 20);
     }
 
@@ -51,8 +54,7 @@ public class PassiveTargetBehaviour : MonoBehaviour
             Instantiate(impactEffectObject, collider.transform.position, collider.transform.rotation);
             if (HitPoints <= 0)
             {
-                Instantiate(Explosion, transform.position, transform.rotation);
-                Destroy(gameObject);
+                DestroyTheTarget();
             }
         }
 
@@ -60,15 +62,28 @@ public class PassiveTargetBehaviour : MonoBehaviour
         {
             collider.gameObject.SendMessage((IsDamaging) ? "TakeDamage" : "RestoreShield", Damage);
             HitPoints = 0;
-            Destroy(gameObject);
+            collisionWithPlayer = true;
+            DestroyTheTarget();
         }
-
     }
 
     float ReturnRandom()
     {
         float random = Random.Range(-0.5f, 0.5f);
         return random;
+    }
+
+    void DestroyTheTarget()
+    {
+        Instantiate(Explosion, transform.position, transform.rotation);
+        if (!collisionWithPlayer)
+        {
+            ExplosionSound.Play();
+        }
+        gameObject.GetComponent<Collider>().enabled = false;
+        var rend = gameObject.GetComponent<Renderer>();
+        rend.enabled = false;
+        Destroy(gameObject, 2);
     }
 }
 

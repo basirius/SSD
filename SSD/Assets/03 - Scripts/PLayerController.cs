@@ -29,8 +29,12 @@ public class PLayerController : MonoBehaviour
     private float damage;
     private GameObject[] bullets;
 
-    // Music
+    // Music and Audio
     private GameObject levelMusicObject;
+    [SerializeField]
+    private AudioSource takeDamageSound;
+    [SerializeField]
+    private AudioSource restoreShieldSound;
 
     // Dictionary of all the children game objects
     private Dictionary<string, Transform> childrenDictionary = new Dictionary<string, Transform>();
@@ -127,6 +131,7 @@ public class PLayerController : MonoBehaviour
         Transform shieldDamageEffect = childrenDictionary["PlasmaExplosionEffect"];
         Transform shieldDamageEffectInstance = Instantiate(shieldDamageEffect, transform.position, transform.rotation);
         shieldDamageEffectInstance.gameObject.SetActive(true);
+        takeDamageSound.Play();
     }
 
     private void RestoreShield(float shield)
@@ -140,6 +145,7 @@ public class PLayerController : MonoBehaviour
         Transform shieldRestoreEffect = childrenDictionary["ShieldRestoreEffect"];
         Transform shieldRestoreEffectInstance = Instantiate(shieldRestoreEffect, transform.position, transform.rotation);
         shieldRestoreEffectInstance.gameObject.SetActive(true);
+        restoreShieldSound.Play();
     }
 
 }
