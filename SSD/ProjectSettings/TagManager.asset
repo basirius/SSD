@@ -10,6 +10,8 @@ TagManager:
   - Projectile
   - Collectible
   - Shield
+  - Passive Target
+  - Active Target
   layers:
   - Default
   - TransparentFX

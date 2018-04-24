@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -143,15 +143,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelSpeed: 320
-  SpawnInterval: 2
+  SpawnInterval: 1
   TunnelSpawnInterval: 5
   TunnelSegmentLength: 80
   SpawnStartDelay: 0
   TunnelSegment: {fileID: 1196149206703658, guid: 8d72854a21e1f6249a00bc14c228dcb0,
     type: 2}
   SpawnGameObjects:
-  - {fileID: 1212815026930994, guid: fbb9365c898984349ad1fbb41bd3b07e, type: 2}
+  - {fileID: 1340464149828024, guid: c6e3c1717788ebf4cbfa543979b9f99a, type: 2}
   - {fileID: 1439925065566620, guid: 9f9c4a413041606449d379172c148103, type: 2}
+  LevelMusicObject: {fileID: 1166078141}
 --- !u!4 &514896366
 Transform:
   m_ObjectHideFlags: 0
@@ -163,7 +164,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &514896367
 MonoBehaviour:
@@ -178,8 +179,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentShield: 100
   MaximumShield: 100
-  HorizontalMoveSpeed: 3
-  VerticalMoveSpeed: 3
+  HorizontalMoveSpeed: 2
+  VerticalMoveSpeed: 2
+  TiltAngle: 20
+  TiltSmooth: 5
 --- !u!114 &514896368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +195,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 10
-  FireRate: 15
+  FireRate: 20
+  Bullets:
+  - {fileID: 1987161718406214, guid: 3d9f00e42f8b2164e95a64326727df3d, type: 2}
+--- !u!1 &804590591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 804590593}
+  m_Layer: 0
+  m_Name: MusicHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &804590593
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 804590591}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1166078142}
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1105248844
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +292,116 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1166078141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1166078142}
+  - component: {fileID: 1166078143}
+  m_Layer: 0
+  m_Name: 01 - Racoon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1166078142
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1166078141}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 804590593}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1166078143
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1166078141}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243099693585140758, guid: ab1aa7d739fee41408ec11fd135d3a18,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 631dc058a7d00bd4c9dcec65e32875e0, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &1258376220
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,6 +552,12 @@ MonoBehaviour:
   MaximumShield: 0
   HorizontalMoveSpeed: 0
   VerticalMoveSpeed: 0
+  TiltAngle: 0
+  TiltSmooth: 0
+  GunBaseDamage: 0
+  FireRate: 0
+  Bullets: []
+  LevelMusicObject: {fileID: 0}
   Settings: {fileID: 514896364}
 --- !u!4 &1747093704
 Transform:

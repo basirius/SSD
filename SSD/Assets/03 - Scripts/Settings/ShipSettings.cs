@@ -8,6 +8,8 @@ public class ShipSettings : MonoBehaviour {
     public float MaximumShield;
     public float HorizontalMoveSpeed;
     public float VerticalMoveSpeed;
+    public float TiltAngle;
+    public float TiltSmooth;
     // Shied resistance
     // movement speed modifiers
     // ship body type

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraPointBehaviour : MonoBehaviour {
 
+    public float PositionClamp;
     private float movementSpeed;
     private float moveHorizontal = 0;
     private float moveVertical = 0;
@@ -26,8 +27,8 @@ public class CameraPointBehaviour : MonoBehaviour {
     private void MovePoint()
     {
         positionLimit = transform.position;
-        positionLimit.x = Mathf.Clamp(positionLimit.x, -20.0f, 20.0f);
-        positionLimit.y = Mathf.Clamp(positionLimit.y, -20.0f, 20.0f);
+        positionLimit.x = Mathf.Clamp(positionLimit.x, -PositionClamp, PositionClamp);
+        positionLimit.y = Mathf.Clamp(positionLimit.y, -PositionClamp, PositionClamp);
         transform.position = positionLimit;
         moveHorizontal = Input.GetAxis("Horizontal");
         moveVertical = Input.GetAxis("Vertical");

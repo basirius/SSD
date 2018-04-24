@@ -15,9 +15,12 @@ public class PLayerController : MonoBehaviour
     private float movementSpeed;
     private float moveHorizontal = 0;
     private float moveVertical = 0;
+    private float tiltHorizontal = 0;
     private Vector3 positionLimit;
     private float horizontalMoveSpeed;
     private float verticalMoveSpeed;
+    private float tiltAngle;
+    private float tiltSmooth;
     private float currentShield;
     private float maximumShield;
 
@@ -26,7 +29,6 @@ public class PLayerController : MonoBehaviour
     private Transform firePoint;
     private float nextTimeToFire = 0;
     private float fireRate;
-    private float damage;
     private GameObject[] bullets;
 
     // Music and Audio
@@ -50,9 +52,10 @@ public class PLayerController : MonoBehaviour
         verticalMoveSpeed = gameManager.VerticalMoveSpeed;
         currentShield = gameManager.CurrentShield;
         maximumShield = gameManager.MaximumShield;
+        tiltAngle = gameManager.TiltAngle;
+        tiltSmooth = gameManager.TiltSmooth;
 
         fireRate = gameManager.FireRate;
-        damage = gameManager.GunBaseDamage;
         bullets = gameManager.Bullets;
 
         // the music object don't make it here. I don't know why!
@@ -72,7 +75,7 @@ public class PLayerController : MonoBehaviour
         levelUIManager.CurrentShield = this.currentShield;
 
 
-        // populate the children dictionaru
+        // populate the children dictionary
         foreach (Transform t in transform)
         {
             childrenDictionary.Add(t.name, t);
@@ -82,13 +85,9 @@ public class PLayerController : MonoBehaviour
     void Update()
     {
         MoveShip();
+        
         if (Input.GetButton("Fire1") && Time.time > nextTimeToFire)
         {
-
-            Transform MuzzleFire = childrenDictionary["MachineGunLight"];
-            Transform muzzleFireInstance = Instantiate(MuzzleFire, firePoint.transform.position, transform.rotation);
-            muzzleFireInstance.gameObject.SetActive(true);
-            Destroy(muzzleFireInstance.gameObject, 0.1f);
             FireWeapon();
         }
 
@@ -96,15 +95,13 @@ public class PLayerController : MonoBehaviour
 
     private void FireWeapon()
     {
+        Transform MuzzleFire = childrenDictionary["MachineGunLight"];
+        Transform muzzleFireInstance = Instantiate(MuzzleFire, firePoint.transform.position, transform.rotation);
+        muzzleFireInstance.gameObject.SetActive(true);
+        Destroy(muzzleFireInstance.gameObject, 0.1f);
         GameObject bulletInstance = Instantiate(bullets[0], firePoint.position, Quaternion.identity);
         nextTimeToFire = Time.time + 1f / fireRate;
         Destroy(bulletInstance, 2.0f);
-        if (Input.GetButtonUp("Fire1"))
-        {
-            //Transform MuzzleFire = childrenDictionary["MachineGunLight"];
-            //Transform muzzleFireInstance = Instantiate(MuzzleFire, firePoint.transform.position, transform.rotation);
-            //muzzleFireInstance.gameObject.SetActive(false);
-        }
     }
 
     private void MoveShip()
@@ -115,6 +112,11 @@ public class PLayerController : MonoBehaviour
         transform.position = positionLimit;
         moveHorizontal = Input.GetAxis("Horizontal");
         moveVertical = Input.GetAxis("Vertical");
+        tiltHorizontal = -moveHorizontal * tiltAngle;
+        // Tilt
+        Quaternion tilt = Quaternion.Euler(0, 0, tiltHorizontal);
+        transform.rotation = Quaternion.Slerp(transform.rotation, tilt, Time.deltaTime * tiltSmooth);
+        // Move
         transform.Translate(moveHorizontal * horizontalMoveSpeed, 0.0f, 0.0f);
         transform.Translate(0.0f, moveVertical * verticalMoveSpeed, 0.0f);
         transform.Translate(0, 0, movementSpeed * Time.deltaTime);

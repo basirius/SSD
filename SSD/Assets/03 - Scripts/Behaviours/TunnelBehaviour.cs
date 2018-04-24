@@ -12,7 +12,6 @@ public class TunnelBehaviour : MonoBehaviour {
     private float nextTunnelSpawnTime = 0;
     private float spawnPositionX;
     private float spawnPositionY;
-    private float randomSpawnerSelector;
     private float spawnInterval;
     private float tunnelSpawnInterval;
     private bool spawnStartFlag;
@@ -26,9 +25,10 @@ public class TunnelBehaviour : MonoBehaviour {
     private SortedDictionary<float, int> sortedSpawnProbabilityDictionary = new SortedDictionary<float, int>();
     #endregion
 
-    // Game Objects
+    #region Game Objects
     private GameObject tunnelSegment;
     private GameObject[] spawnGameObjects;
+    #endregion
 
     void Start () {
         GameManager gameManager = GameManager.Instance;
@@ -64,7 +64,7 @@ public class TunnelBehaviour : MonoBehaviour {
     }
 	
 	void Update () {
-        randomSpawnerSelector = Random.Range(1, 100);
+        // randomSpawnerSelector = Random.Range(1, 100);
         transform.Translate(0, 0, MovementSpeed * Time.deltaTime);
         SpawnTargets(SpawnIndexSelector());
         SpawnTunnel();
@@ -122,10 +122,12 @@ public class TunnelBehaviour : MonoBehaviour {
     {
         if (spawnStartFlag)
         {
+            GameObject spawn = spawnGameObjects[spawnIndex];
+            
             spawnPositionX = Random.Range(-55, 55);
             spawnPositionY = Random.Range(-55, 55);
             Vector3 spawnPositionVector = new Vector3(spawnPositionX, spawnPositionY, transform.position.z);
-            Instantiate(spawnGameObjects[spawnIndex], spawnPositionVector, Quaternion.identity);
+            Instantiate(spawn, spawnPositionVector, Quaternion.identity);
         }
     }
 

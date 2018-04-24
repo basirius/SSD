@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PassiveTargetBehaviour : MonoBehaviour
 {
+    [Tooltip("If set to false, the amount of Damage will restore the Shield")]
     public bool IsDamaging;
     public float Damage;
     public float HitPoints;
@@ -21,7 +22,7 @@ public class PassiveTargetBehaviour : MonoBehaviour
 
     private GameObject impactEffectObject;
     private bool isTargetHealthZero;
-    private float collectibleProbability;
+    //private float collectibleProbability;
 
     private bool collisionWithPlayer;
     void Start()
@@ -30,7 +31,7 @@ public class PassiveTargetBehaviour : MonoBehaviour
         randomYrotation = ReturnRandom();
         randomZrotation = ReturnRandom();
         isTargetHealthZero = false;
-        collectibleProbability = Random.value;
+        //collectibleProbability = Random.value;
         collisionWithPlayer = false;
         Destroy(gameObject, 20);
     }

@@ -181,6 +181,8 @@ MonoBehaviour:
   MaximumShield: 100
   HorizontalMoveSpeed: 2
   VerticalMoveSpeed: 2
+  TiltAngle: 20
+  TiltSmooth: 5
 --- !u!114 &514896368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,6 +552,8 @@ MonoBehaviour:
   MaximumShield: 0
   HorizontalMoveSpeed: 0
   VerticalMoveSpeed: 0
+  TiltAngle: 0
+  TiltSmooth: 0
   GunBaseDamage: 0
   FireRate: 0
   Bullets: []

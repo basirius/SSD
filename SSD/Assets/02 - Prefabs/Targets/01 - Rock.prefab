@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114417969794126250}
   - component: {fileID: 54230304125937162}
   m_Layer: 10
-  m_Name: 01 - Rock
+  m_Name: 01 - Rock Not Used
   m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,6 +144,7 @@ MonoBehaviour:
   Damage: 50
   HitPoints: 60
   Explosion: {fileID: 1795133976799430, guid: 9f52f171af987f7409942bfa06ae5eb6, type: 2}
+  ExplosionSound: {fileID: 0}
   SpawnProbability: 80
   SpawnRelativeCalculatedWeight: 0.6666667
 --- !u!135 &135721576824598794

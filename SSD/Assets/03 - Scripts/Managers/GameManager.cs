@@ -38,6 +38,10 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     public float HorizontalMoveSpeed;
     [HideInInspector]
     public float VerticalMoveSpeed;
+    [HideInInspector]
+    public float TiltAngle;
+    [HideInInspector]
+    public float TiltSmooth;
     #endregion
 
     #region Machine Gun Variables
@@ -77,6 +81,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         this.MaximumShield = shipSettings.MaximumShield;
         this.HorizontalMoveSpeed = shipSettings.HorizontalMoveSpeed;
         this.VerticalMoveSpeed = shipSettings.VerticalMoveSpeed;
+        this.TiltAngle = shipSettings.TiltAngle;
+        this.TiltSmooth = shipSettings.TiltSmooth;
 
         // Machine Gun Settings
         MachineGunSettings machineGunSettings = Settings.GetComponent<MachineGunSettings>();
