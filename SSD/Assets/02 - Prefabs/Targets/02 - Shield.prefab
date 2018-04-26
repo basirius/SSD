@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 82098627357112216}
   m_Layer: 10
   m_Name: 02 - Shield
-  m_TagString: Target
+  m_TagString: Passive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,8 +198,8 @@ MonoBehaviour:
   HitPoints: 20
   Explosion: {fileID: 1579619931616168, guid: 93a190e3adfa35d47972c8f7914fecc1, type: 2}
   ExplosionSound: {fileID: 82098627357112216}
-  SpawnProbability: 40
-  SpawnRelativeCalculatedWeight: 0.33333334
+  SpawnProbability: 20
+  SpawnRelativeCalculatedWeight: 0.14728682
 --- !u!136 &136856163450452148
 CapsuleCollider:
   m_ObjectHideFlags: 1

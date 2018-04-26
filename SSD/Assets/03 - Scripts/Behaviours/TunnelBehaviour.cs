@@ -23,6 +23,7 @@ public class TunnelBehaviour : MonoBehaviour {
     private int numberOftunnelSegmentSpawnsInEachInterval;
     Vector3 tunnelSegmentSpawnPosition = new Vector3();
     private SortedDictionary<float, int> sortedSpawnProbabilityDictionary = new SortedDictionary<float, int>();
+    private SortedDictionary<float, int> sortedAdditiveSpawnProbabilityDictionary = new SortedDictionary<float, int>();
     #endregion
 
     #region Game Objects
@@ -49,8 +50,8 @@ public class TunnelBehaviour : MonoBehaviour {
         // these two loops normalise the probability of spawning each target
         foreach (GameObject gameObject in spawnGameObjects)
         {
-            PassiveTargetBehaviour spawnBehaviour = gameObject.GetComponent<PassiveTargetBehaviour>();
-            totalSpawnProbability += spawnBehaviour.SpawnProbability;
+                PassiveTargetBehaviour spawnBehaviour = gameObject.GetComponent<PassiveTargetBehaviour>();
+                totalSpawnProbability += spawnBehaviour.SpawnProbability;
         }
 
         for (int i = 0; i < spawnGameObjects.Length; i++)
@@ -60,7 +61,16 @@ public class TunnelBehaviour : MonoBehaviour {
             spawnBehaviour.SpawnRelativeCalculatedWeight = weight;
             sortedSpawnProbabilityDictionary.Add(weight, i);
         }
-
+        float additiveWeight = 0;
+        float keyHolder;
+        int valueHolder;
+        foreach (var item in sortedSpawnProbabilityDictionary)
+        {
+            keyHolder = item.Key + additiveWeight;
+            additiveWeight = keyHolder;
+            valueHolder = item.Value;
+            sortedAdditiveSpawnProbabilityDictionary.Add(keyHolder, valueHolder);
+        }
     }
 	
 	void Update () {
@@ -79,7 +89,7 @@ public class TunnelBehaviour : MonoBehaviour {
     {
         float random = Random.value;
 
-        foreach (var item in sortedSpawnProbabilityDictionary)
+        foreach (var item in sortedAdditiveSpawnProbabilityDictionary)
         {
             if (random < item.Key)
             {

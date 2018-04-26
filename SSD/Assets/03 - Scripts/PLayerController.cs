@@ -117,9 +117,7 @@ public class PLayerController : MonoBehaviour
         Quaternion tilt = Quaternion.Euler(0, 0, tiltHorizontal);
         transform.rotation = Quaternion.Slerp(transform.rotation, tilt, Time.deltaTime * tiltSmooth);
         // Move
-        transform.Translate(moveHorizontal * horizontalMoveSpeed, 0.0f, 0.0f);
-        transform.Translate(0.0f, moveVertical * verticalMoveSpeed, 0.0f);
-        transform.Translate(0, 0, movementSpeed * Time.deltaTime);
+        transform.Translate(moveHorizontal * horizontalMoveSpeed, moveVertical * verticalMoveSpeed, movementSpeed * Time.deltaTime);
     }
 
     private void TakeDamage(float damage)

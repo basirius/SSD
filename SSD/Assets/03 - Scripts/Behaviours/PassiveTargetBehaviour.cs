@@ -38,7 +38,11 @@ public class PassiveTargetBehaviour : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(randomXrotation, randomYrotation, randomZrotation);
+        if (gameObject.tag == "Passive")
+        {
+            transform.Rotate(randomXrotation, randomYrotation, randomZrotation);
+        }
+        
 
         if (HitPoints <= 0 && !isTargetHealthZero)
         {
@@ -82,8 +86,7 @@ public class PassiveTargetBehaviour : MonoBehaviour
             ExplosionSound.Play();
         }
         gameObject.GetComponent<Collider>().enabled = false;
-        var rend = gameObject.GetComponent<Renderer>();
-        rend.enabled = false;
+        gameObject.GetComponent<Renderer>().enabled = false;
         Destroy(gameObject, 2);
     }
 }
