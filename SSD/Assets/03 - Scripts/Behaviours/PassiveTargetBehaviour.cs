@@ -86,7 +86,11 @@ public class PassiveTargetBehaviour : MonoBehaviour
             ExplosionSound.Play();
         }
         gameObject.GetComponent<Collider>().enabled = false;
-        gameObject.GetComponent<Renderer>().enabled = false;
+        var renderers = gameObject.GetComponentsInChildren<Renderer>();
+        foreach (var renderer in renderers)
+        {
+            renderer.enabled = false;
+        }
         Destroy(gameObject, 2);
     }
 }

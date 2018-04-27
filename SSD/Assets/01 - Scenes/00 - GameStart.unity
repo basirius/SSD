@@ -152,7 +152,7 @@ MonoBehaviour:
   SpawnGameObjects:
   - {fileID: 1340464149828024, guid: c6e3c1717788ebf4cbfa543979b9f99a, type: 2}
   - {fileID: 1439925065566620, guid: 9f9c4a413041606449d379172c148103, type: 2}
-  - {fileID: 1666517066237842, guid: 560cc653a08fb12428a6f853deff6110, type: 2}
+  - {fileID: 1510340999210168, guid: 6eb0eee524fafd049be2fe1ce2cac50a, type: 2}
   LevelMusicObject: {fileID: 1166078141}
 --- !u!4 &514896366
 Transform:
