@@ -33,7 +33,7 @@ public class PassiveTargetBehaviour : MonoBehaviour
         isTargetHealthZero = false;
         //collectibleProbability = Random.value;
         collisionWithPlayer = false;
-        Destroy(gameObject, 20);
+        Destroy(gameObject, 25);
     }
 
     void Update()
@@ -57,6 +57,8 @@ public class PassiveTargetBehaviour : MonoBehaviour
             HitPoints -= collider.gameObject.GetComponent<BulletBehaviour>().Damage;
             impactEffectObject = collider.gameObject.GetComponent<BulletBehaviour>().ImpactEffect;
             Instantiate(impactEffectObject, collider.transform.position, collider.transform.rotation);
+            Destroy(collider.gameObject);
+
             if (HitPoints <= 0)
             {
                 DestroyTheTarget();
@@ -68,6 +70,11 @@ public class PassiveTargetBehaviour : MonoBehaviour
             collider.gameObject.SendMessage((IsDamaging) ? "TakeDamage" : "RestoreShield", Damage);
             HitPoints = 0;
             collisionWithPlayer = true;
+            DestroyTheTarget();
+        }
+
+        if (collider.gameObject.tag == "Active")
+        {
             DestroyTheTarget();
         }
     }

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[HelpURL("https://www.youtube.com/channel/UCGrnFZJWOB769Pirppb8Xog")]
 public class GameManager : UnitySingletonPersistent<GameManager>
 {
-
+    
     // This is the main persistent singleton Game Manager
     // to use this in any script in the game : gameManager = GameManager.Instance;
 

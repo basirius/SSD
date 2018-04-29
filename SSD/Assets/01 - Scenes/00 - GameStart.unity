@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 10
-  FireRate: 20
+  FireRate: 15
   Bullets:
   - {fileID: 1987161718406214, guid: 3d9f00e42f8b2164e95a64326727df3d, type: 2}
 --- !u!1 &804590591
