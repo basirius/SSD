@@ -15,21 +15,9 @@ public class BulletBehaviour : MonoBehaviour {
 		Destroy (gameObject, 2.0f);
         shotSound = gameObject.GetComponent<AudioSource>();
         shotSound.Play();
-        print(Damage);
-
 	}
 
 	void Update () {
         transform.Translate(0, 0, ShotSpeed * Time.deltaTime);
-    }
-
-    void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.tag == "Player")
-        {
-            print("Hit");
-            collider.gameObject.SendMessage("TakeDamage", Damage);
-            Destroy(gameObject);
-        }
     }
 }
