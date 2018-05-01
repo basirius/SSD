@@ -12,6 +12,7 @@ TagManager:
   - Shield
   - Active
   - Passive
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Enemy
   - Projectile
   - Explosion
-  - 
+  - EnemyProjectile
   - 
   - 
   - 

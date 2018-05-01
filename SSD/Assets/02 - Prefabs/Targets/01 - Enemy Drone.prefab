@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4551245394567436}
   - component: {fileID: 33852499295971200}
   - component: {fileID: 23687944030752284}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: PA_DroneWingRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4246375439117342}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 82575057402536562}
   - component: {fileID: 65286992460153128}
   - component: {fileID: 95432051389842340}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: 01 - Enemy Drone
   m_TagString: Active
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4881666464957262}
   - component: {fileID: 33940786262634614}
   - component: {fileID: 23177783191734688}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: PA_DroneBladeLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4651763614533750}
   - component: {fileID: 33017844643056032}
   - component: {fileID: 23095426044404808}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: 01 - Enemy Drone Body
   m_TagString: Active
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4011968844010418}
   - component: {fileID: 108675622357733344}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Drone Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 4780799495763564}
   - component: {fileID: 33364627524137270}
   - component: {fileID: 23640138295636830}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: PA_DroneBladeRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 4293300874621060}
   - component: {fileID: 33052971265387284}
   - component: {fileID: 23551924378363576}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: PA_DroneWingLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +565,7 @@ Animator:
   m_GameObject: {fileID: 1510340999210168}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f14b6f7503476eb4e9b2afc1cc05e719, type: 3}
-  m_Controller: {fileID: 9100000, guid: ee1089ac8937d3a4ebc368d837dcfbdf, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -641,3 +641,4 @@ MonoBehaviour:
   LifeTime: 20
   Projectile: {fileID: 1981090090481276, guid: 3aebb5c367302904aa5ce7e273ecf37b, type: 2}
   Gun: {fileID: 1380142165332804}
+  FixedDistanceFromThePlayer: 500

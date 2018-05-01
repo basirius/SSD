@@ -11,11 +11,9 @@ public class LaserBehaviour : MonoBehaviour {
 
     void Start()
     {
-        Destroy(gameObject, 2.0f);
+        //Destroy(gameObject, 2.0f);
         shotSound = gameObject.GetComponent<AudioSource>();
         shotSound.Play();
-        print(LaserDamage);
-
     }
 
     void Update()
@@ -27,7 +25,6 @@ public class LaserBehaviour : MonoBehaviour {
     {
         if (collider.gameObject.tag == "Player")
         {
-            print("Hit");
             collider.gameObject.SendMessage("TakeDamage", LaserDamage);
             Destroy(gameObject);
         }

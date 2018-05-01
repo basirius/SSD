@@ -25,9 +25,9 @@ GameObject:
   - component: {fileID: 114942753558077390}
   - component: {fileID: 54375500080473236}
   - component: {fileID: 136780286778631892}
-  m_Layer: 12
-  m_Name: Laser
-  m_TagString: Untagged
+  m_Layer: 14
+  m_Name: 01 - Enemy Laser Projectile
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1981090090481276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.25, y: 6.31, z: -12.7}
+  m_LocalPosition: {x: 49.9, y: 19.6, z: -12.7}
   m_LocalScale: {x: 3, y: 3, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abc8bb132a0e66c488aabb92c9ff3344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShotSpeed: 1500
+  ShotSpeed: 2500
   ImpactEffect: {fileID: 1910076634055270, guid: 5a88ae7cb7a99474ebb1a2c4d16cb546,
     type: 2}
   LaserDamage: 30
@@ -206,7 +206,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 5
+  m_Radius: 1
   m_Height: 1
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}

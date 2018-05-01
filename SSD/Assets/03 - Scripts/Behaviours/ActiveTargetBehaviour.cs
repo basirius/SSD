@@ -9,6 +9,7 @@ public class ActiveTargetBehaviour : MonoBehaviour
     public float LifeTime;
     public GameObject Projectile;
     public GameObject Gun;
+    public float FixedDistanceFromThePlayer;
     private GameObject player;
     private float movementSpeed;
     private Light droneLight;
@@ -28,7 +29,7 @@ public class ActiveTargetBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) < 300 && !expired)
+        if (Vector3.Distance(transform.position, player.transform.position) < FixedDistanceFromThePlayer && !expired)
         {
             transform.Translate(0, 0, movementSpeed * Time.deltaTime);
             droneLight.color = Color.red;
@@ -53,7 +54,6 @@ public class ActiveTargetBehaviour : MonoBehaviour
     {
             Gun.transform.LookAt(player.transform);
             var laser = Instantiate(Projectile, Gun.transform.position, Gun.transform.rotation);
-            laser.transform.Translate(0, 0, 800 * Time.deltaTime);
             fireOnce = false;
     }
 }
