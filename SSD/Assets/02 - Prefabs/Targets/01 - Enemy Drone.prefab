@@ -626,7 +626,7 @@ MonoBehaviour:
   Explosion: {fileID: 1255404267473360, guid: 530576ea9f7cc844a821033d1de47a89, type: 2}
   ExplosionSound: {fileID: 82575057402536562}
   SpawnProbability: 10
-  SpawnRelativeCalculatedWeight: 0.09090909
+  SpawnRelativeCalculatedWeight: 0.04761905
 --- !u!114 &114363750813328744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -642,3 +642,5 @@ MonoBehaviour:
   Projectile: {fileID: 1981090090481276, guid: 3aebb5c367302904aa5ce7e273ecf37b, type: 2}
   Gun: {fileID: 1380142165332804}
   FixedDistanceFromThePlayer: 500
+  FireRate: 0.2
+  FiringDelay: 0.5

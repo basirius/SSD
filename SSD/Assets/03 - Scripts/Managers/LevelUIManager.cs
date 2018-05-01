@@ -11,9 +11,14 @@ public class LevelUIManager : UnitySingleton<LevelUIManager> {
     [HideInInspector]
     public float MaximumShield;
     private float shieldBarRatio;
+    private Canvas pauseMenu;
 
+    private GameManager gameManager;
 
-	void Start () {
+    void Start () {
+        gameManager = GameManager.Instance;
+        pauseMenu = gameManager.PauseMenu;
+        Instantiate(pauseMenu, transform.position, Quaternion.identity);
         UpdateUI();
     }
 	

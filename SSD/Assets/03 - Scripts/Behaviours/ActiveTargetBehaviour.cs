@@ -10,12 +10,16 @@ public class ActiveTargetBehaviour : MonoBehaviour
     public GameObject Projectile;
     public GameObject Gun;
     public float FixedDistanceFromThePlayer;
+    public float FireRate;
+    public float FiringDelay;
+    private float nextTimeToFire;
     private GameObject player;
     private float movementSpeed;
     private Light droneLight;
     private float birthTime;
     private bool expired = false;
-    private bool fireOnce = true;
+    private bool engaged = false;
+    private PassiveTargetBehaviour passiveTargetBehaviour;
 
 
     void Start()
@@ -24,36 +28,49 @@ public class ActiveTargetBehaviour : MonoBehaviour
         movementSpeed = gameManager.LevelSpeed;
         player = GameObject.FindGameObjectWithTag("Player");
         droneLight = gameObject.GetComponentInChildren<Light>();
+        nextTimeToFire = FiringDelay;
         birthTime = Time.time;
+        passiveTargetBehaviour = GetComponent<PassiveTargetBehaviour>();
     }
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) < FixedDistanceFromThePlayer && !expired)
+        if (Vector3.Distance(transform.position, player.transform.position) < FixedDistanceFromThePlayer && !expired && !engaged)
         {
-            transform.Translate(0, 0, movementSpeed * Time.deltaTime);
-            droneLight.color = Color.red;
-            droneLight.intensity = 10;
-            if (fireOnce)
-            {
-                OpenFire();
-            }
+            Engage();
 
         }
 
-        if (Time.time > birthTime + LifeTime)
+        if (Time.time > birthTime + LifeTime || passiveTargetBehaviour.HitPoints <=0)
         {
-            expired = true;
-            transform.Translate(0, 0, 0);
-            droneLight.color = Color.blue;
-            droneLight.intensity = 15;
+            Disengage();
         }
+    }
+
+    void Engage()
+    {
+        transform.Translate(0, 0, movementSpeed * Time.deltaTime);
+        droneLight.color = Color.red;
+        droneLight.intensity = 10;
+        if (Time.time > nextTimeToFire)
+        {
+            OpenFire();
+        }
+    }
+
+    void Disengage()
+    {
+        expired = true;
+        engaged = false;
+        transform.Translate(0, 0, 0);
+        droneLight.color = Color.blue;
+        droneLight.intensity = 15;
     }
 
     private void OpenFire()
     {
-            Gun.transform.LookAt(player.transform);
-            var laser = Instantiate(Projectile, Gun.transform.position, Gun.transform.rotation);
-            fireOnce = false;
+        Gun.transform.LookAt(player.transform);
+        var laser = Instantiate(Projectile, Gun.transform.position, Gun.transform.rotation);
+        nextTimeToFire = Time.time + 1f / FireRate;
     }
 }

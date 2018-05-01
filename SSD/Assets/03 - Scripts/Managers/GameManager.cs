@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 [HelpURL("https://www.youtube.com/channel/UCGrnFZJWOB769Pirppb8Xog")]
 public class GameManager : UnitySingletonPersistent<GameManager>
@@ -57,6 +59,10 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     #region Music Variables
     [HideInInspector]
     public GameObject LevelMusicObject;
+    #endregion
+
+    #region UI Variables
+    public Canvas PauseMenu;
     #endregion
 
     // Machine Gun Variables
