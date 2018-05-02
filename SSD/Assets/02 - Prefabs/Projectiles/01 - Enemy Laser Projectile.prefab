@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abc8bb132a0e66c488aabb92c9ff3344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShotSpeed: 2500
+  ShotSpeed: 2000
   ImpactEffect: {fileID: 1910076634055270, guid: 5a88ae7cb7a99474ebb1a2c4d16cb546,
     type: 2}
   LaserDamage: 30

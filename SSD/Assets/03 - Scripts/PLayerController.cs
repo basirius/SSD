@@ -23,6 +23,7 @@ public class PLayerController : MonoBehaviour
     private float tiltSmooth;
     private float currentShield;
     private float maximumShield;
+    private float structuralHealth;
 
     // Weapon
     [SerializeField]
@@ -52,6 +53,7 @@ public class PLayerController : MonoBehaviour
         verticalMoveSpeed = gameManager.VerticalMoveSpeed;
         currentShield = gameManager.CurrentShield;
         maximumShield = gameManager.MaximumShield;
+        structuralHealth = gameManager.StructuralHealth;
         tiltAngle = gameManager.TiltAngle;
         tiltSmooth = gameManager.TiltSmooth;
 
@@ -91,6 +93,11 @@ public class PLayerController : MonoBehaviour
             FireWeapon();
         }
 
+        if (structuralHealth < 0)
+        {
+            LevelUIManager.Instance.Restart();
+        }
+
     }
 
     private void FireWeapon()
@@ -127,11 +134,25 @@ public class PLayerController : MonoBehaviour
         {
             currentShield = 0;
         }
-        levelUIManager.CurrentShield = this.currentShield;
-        Transform shieldDamageEffect = childrenDictionary["PlasmaExplosionEffect"];
-        Transform shieldDamageEffectInstance = Instantiate(shieldDamageEffect, transform.position, transform.rotation);
-        shieldDamageEffectInstance.gameObject.SetActive(true);
-        takeDamageSound.Play();
+
+        if (currentShield == 0)
+        {
+            levelUIManager.CurrentShield = this.currentShield;
+            Transform structuralDamageEffect = childrenDictionary["StructuralDamageEffect"];
+            Transform structuralDamageEffectInstance = Instantiate(structuralDamageEffect, transform.position, transform.rotation, gameObject.transform);
+            structuralDamageEffectInstance.gameObject.SetActive(true);
+            structuralHealth -= damage;
+            takeDamageSound.Play();
+        }
+        else
+        {
+            levelUIManager.CurrentShield = this.currentShield;
+            Transform shieldDamageEffect = childrenDictionary["PlasmaExplosionEffect"];
+            Transform shieldDamageEffectInstance = Instantiate(shieldDamageEffect, transform.position, transform.rotation);
+            shieldDamageEffectInstance.gameObject.SetActive(true);
+            takeDamageSound.Play();
+        }
+
     }
 
     private void RestoreShield(float shield)

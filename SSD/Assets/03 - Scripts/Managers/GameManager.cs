@@ -45,6 +45,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     public float TiltAngle;
     [HideInInspector]
     public float TiltSmooth;
+    [HideInInspector]
+    public float StructuralHealth;
     #endregion
 
     #region Machine Gun Variables
@@ -90,6 +92,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         this.VerticalMoveSpeed = shipSettings.VerticalMoveSpeed;
         this.TiltAngle = shipSettings.TiltAngle;
         this.TiltSmooth = shipSettings.TiltSmooth;
+        this.StructuralHealth = shipSettings.StructuralHealth;
 
         // Machine Gun Settings
         MachineGunSettings machineGunSettings = Settings.GetComponent<MachineGunSettings>();
@@ -109,4 +112,5 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         // Load the Scene
         SceneManager.LoadScene("01 - Scenes/00 - StartMenu");
     }
+
 }
