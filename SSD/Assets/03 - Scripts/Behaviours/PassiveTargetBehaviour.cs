@@ -13,6 +13,9 @@ public class PassiveTargetBehaviour : MonoBehaviour
     [Header("Probability of being Spawned")]
     [Tooltip("select a number between 1 and 100")]
     public float SpawnProbability;
+    [Header("Dust")]
+    [Tooltip("Dusty")]
+    public GameObject Dust;
     [HideInInspector]
     public float SpawnRelativeCalculatedWeight;
 
@@ -97,6 +100,7 @@ public class PassiveTargetBehaviour : MonoBehaviour
         foreach (var renderer in renderers)
         {
             renderer.enabled = false;
+            Instantiate(Dust, transform.position, transform.rotation);
         }
         Destroy(gameObject, 2);
     }

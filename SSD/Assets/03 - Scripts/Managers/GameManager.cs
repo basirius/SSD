@@ -67,9 +67,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     public Canvas PauseMenu;
     #endregion
 
-    // Machine Gun Variables
-
     public GameObject Settings;
+    public GameObject Inventory;
 
     void Start()
     {

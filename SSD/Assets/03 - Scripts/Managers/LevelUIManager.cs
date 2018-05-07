@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelUIManager : UnitySingleton<LevelUIManager> {
 
     public Image CurrentShieldBar;
+    public TextMeshPro Dust_1;
+    public TextMeshPro Dust_2;
+    public TextMeshPro Dust_3;
+    public TextMeshPro Dust_4;
+    public TextMeshPro Dust_5;
     [HideInInspector]
     public float CurrentShield;
     [HideInInspector]
@@ -16,11 +22,13 @@ public class LevelUIManager : UnitySingleton<LevelUIManager> {
     private Canvas pauseMenuInstance;
     private bool gameIsPaused = false;
 
+    private InventoryManager inventoryManager;
     private GameManager gameManager;
 
     void Start () {
         gameManager = GameManager.Instance;
         pauseMenu = gameManager.PauseMenu;
+        inventoryManager = gameManager.Inventory.GetComponent<InventoryManager>();
         pauseMenuInstance = Instantiate(pauseMenu, transform.position, Quaternion.identity);
         pauseMenuInstance.gameObject.SetActive(false);
         UpdateUI();

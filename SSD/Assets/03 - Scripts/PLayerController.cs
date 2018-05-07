@@ -42,6 +42,10 @@ public class PLayerController : MonoBehaviour
     // Dictionary of all the children game objects
     private Dictionary<string, Transform> childrenDictionary = new Dictionary<string, Transform>();
 
+    //Inventory
+    private InventoryManager inventoryManager;
+
+
     private GameManager gameManager;
 
     void Start()
@@ -71,17 +75,16 @@ public class PLayerController : MonoBehaviour
         //    print(levelMusicObject.name);
         //}
 
-
         levelUIManager = levelUIHolder.GetComponent<LevelUIManager>();
         levelUIManager.MaximumShield = this.maximumShield;
         levelUIManager.CurrentShield = this.currentShield;
-
 
         // populate the children dictionary
         foreach (Transform t in transform)
         {
             childrenDictionary.Add(t.name, t);
         }
+        inventoryManager = gameManager.Inventory.GetComponent<InventoryManager>();
     }
 
     void Update()
@@ -167,6 +170,31 @@ public class PLayerController : MonoBehaviour
         Transform shieldRestoreEffectInstance = Instantiate(shieldRestoreEffect, transform.position, transform.rotation);
         shieldRestoreEffectInstance.gameObject.SetActive(true);
         restoreShieldSound.Play();
+    }
+
+
+    private void Collect(int DustIndex)
+    {
+        switch (DustIndex)
+        {
+            case 1:
+                inventoryManager.DustMineral_1 += 1;
+                break;
+            case 2:
+                inventoryManager.DustMineral_2 += 1;
+                break;
+            case 3:
+                inventoryManager.DustMineral_3 += 1;
+                break;
+            case 4:
+                inventoryManager.DustMineral_4 += 1;
+                break;
+            case 5:
+                inventoryManager.DustMineral_5 += 1;
+                break;
+            default:
+                break;
+        }
     }
 
 }
