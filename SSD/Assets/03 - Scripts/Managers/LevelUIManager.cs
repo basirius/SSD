@@ -8,11 +8,11 @@ using TMPro;
 public class LevelUIManager : UnitySingleton<LevelUIManager> {
 
     public Image CurrentShieldBar;
-    public TextMeshPro Dust_1;
-    public TextMeshPro Dust_2;
-    public TextMeshPro Dust_3;
-    public TextMeshPro Dust_4;
-    public TextMeshPro Dust_5;
+    public Text Dust_1;
+    public Text Dust_2;
+    public Text Dust_3;
+    public Text Dust_4;
+    public Text Dust_5;
     [HideInInspector]
     public float CurrentShield;
     [HideInInspector]
@@ -55,6 +55,11 @@ public class LevelUIManager : UnitySingleton<LevelUIManager> {
     {
         shieldBarRatio = CurrentShield / MaximumShield;
         CurrentShieldBar.rectTransform.localScale = new Vector3(shieldBarRatio, 1, 1);
+        Dust_1.text = inventoryManager.DustMineral_1.ToString();
+        Dust_2.text = inventoryManager.DustMineral_2.ToString();
+        Dust_3.text = inventoryManager.DustMineral_3.ToString();
+        Dust_4.text = inventoryManager.DustMineral_4.ToString();
+        Dust_5.text = inventoryManager.DustMineral_5.ToString();
     }
 
     public void Resume()

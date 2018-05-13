@@ -14,4 +14,5 @@ public class InventoryManager : MonoBehaviour {
     public int DustMineral_4;
     [HideInInspector]
     public int DustMineral_5;
+
 }

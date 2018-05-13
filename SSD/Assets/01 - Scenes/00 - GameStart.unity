@@ -146,7 +146,7 @@ MonoBehaviour:
   SpawnInterval: 1
   TunnelSpawnInterval: 5
   TunnelSegmentLength: 80
-  SpawnStartDelay: 0
+  SpawnStartDelay: 5
   TunnelSegment: {fileID: 1196149206703658, guid: 8d72854a21e1f6249a00bc14c228dcb0,
     type: 2}
   SpawnGameObjects:

@@ -646,7 +646,7 @@ MonoBehaviour:
   HitPoints: 200
   Explosion: {fileID: 1255404267473360, guid: 530576ea9f7cc844a821033d1de47a89, type: 2}
   ExplosionSound: {fileID: 82575057402536562}
-  SpawnProbability: 10
+  SpawnProbability: 5
   Dust: {fileID: 1889133999323572, guid: 5d3e7e3d63b6cca4795d683365540594, type: 2}
   SpawnRelativeCalculatedWeight: 0.09090909
 --- !u!114 &114363750813328744

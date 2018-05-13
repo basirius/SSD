@@ -74,7 +74,6 @@ public class TunnelBehaviour : MonoBehaviour {
     }
 	
 	void Update () {
-        // randomSpawnerSelector = Random.Range(1, 100);
         transform.Translate(0, 0, MovementSpeed * Time.deltaTime);
         SpawnTargets(SpawnIndexSelector());
         SpawnTunnel();
