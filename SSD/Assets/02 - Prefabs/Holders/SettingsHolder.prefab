@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1588834823013128}
+  m_IsPrefabParent: 1
+--- !u!1 &1588834823013128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4493769959463616}
+  - component: {fileID: 114392929656041996}
+  - component: {fileID: 114899644438126364}
+  - component: {fileID: 114207456324378228}
+  m_Layer: 0
+  m_Name: SettingsHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4493769959463616
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1588834823013128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114207456324378228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1588834823013128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21747bc6fc238134e88acbb8ba3ab296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentShield: 100
+  MaximumShield: 200
+  HorizontalMoveSpeed: 2
+  VerticalMoveSpeed: 2
+  TiltAngle: 20
+  TiltSmooth: 5
+  StructuralHealth: 100
+--- !u!114 &114392929656041996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1588834823013128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a6326a104c008845b9f87f8e34b075f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelSpeed: 320
+  SpawnInterval: 1
+  TunnelSpawnInterval: 5
+  TunnelSegmentLength: 80
+  SpawnStartDelay: 5
+  TunnelSegment: {fileID: 1196149206703658, guid: 8d72854a21e1f6249a00bc14c228dcb0,
+    type: 2}
+  SpawnGameObjects:
+  - {fileID: 1340464149828024, guid: c6e3c1717788ebf4cbfa543979b9f99a, type: 2}
+  - {fileID: 1439925065566620, guid: 9f9c4a413041606449d379172c148103, type: 2}
+  - {fileID: 1510340999210168, guid: 6eb0eee524fafd049be2fe1ce2cac50a, type: 2}
+  LevelMusicObject: {fileID: 0}
+--- !u!114 &114899644438126364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1588834823013128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ef27b6c17bff54bbafc8f7d286c49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 10
+  FireRate: 15
+  Bullets:
+  - {fileID: 1987161718406214, guid: 3d9f00e42f8b2164e95a64326727df3d, type: 2}

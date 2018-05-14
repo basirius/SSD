@@ -108,6 +108,9 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         // Music Settings
         this.LevelMusicObject = levelSettings.LevelMusicObject;
 
+        // Save inventory
+        ES3.Save<GameObject>("PersistentInventory", Inventory);
+
         // Load the Scene
         SceneManager.LoadScene("01 - Scenes/00 - StartMenu");
     }
