@@ -85,6 +85,11 @@ public class LevelUIManager : UnitySingleton<LevelUIManager> {
 
     public void Quit()
     {
+        ES3.Save<int>("Mineral_1", inventoryManager.DustMineral_1);
+        ES3.Save<int>("Mineral_2", inventoryManager.DustMineral_2);
+        ES3.Save<int>("Mineral_3", inventoryManager.DustMineral_3);
+        ES3.Save<int>("Mineral_4", inventoryManager.DustMineral_4);
+        ES3.Save<int>("Mineral_5", inventoryManager.DustMineral_5);
         Application.Quit();
     }
 

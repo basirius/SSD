@@ -104,12 +104,27 @@ public class GameManager : UnitySingletonPersistent<GameManager>
             BulletBehaviour bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
             bulletBehaviour.Damage = bulletBehaviour.BulletDamageModifier * GunBaseDamage;
         }
-
+        
         // Music Settings
         this.LevelMusicObject = levelSettings.LevelMusicObject;
 
-        // Save inventory
-        ES3.Save<GameObject>("PersistentInventory", Inventory);
+        // Load inventory
+        InventoryManager inventoryManager = Inventory.GetComponent<InventoryManager>();
+
+        if (ES3.KeyExists("Mineral_1"))
+            inventoryManager.DustMineral_1 = ES3.Load<int>("Mineral_1");
+
+        if (ES3.KeyExists("Mineral_2"))
+            inventoryManager.DustMineral_2 = ES3.Load<int>("Mineral_2");
+
+        if (ES3.KeyExists("Mineral_3"))
+            inventoryManager.DustMineral_3 = ES3.Load<int>("Mineral_3");
+
+        if (ES3.KeyExists("Mineral_4"))
+            inventoryManager.DustMineral_4 = ES3.Load<int>("Mineral_4");
+
+        if (ES3.KeyExists("Mineral_5"))
+            inventoryManager.DustMineral_5 = ES3.Load<int>("Mineral_5");
 
         // Load the Scene
         SceneManager.LoadScene("01 - Scenes/00 - StartMenu");
